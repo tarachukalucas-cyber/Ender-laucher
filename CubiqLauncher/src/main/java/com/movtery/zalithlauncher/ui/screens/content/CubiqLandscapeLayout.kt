@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -175,9 +176,9 @@ fun LandscapeLauncherLayout(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(58.dp)
+                .height(68.dp)
                 .background(Color(0xFF100B1B))
-                .padding(horizontal = 18.dp),
+                .padding(horizontal = 26.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
@@ -217,8 +218,9 @@ fun LandscapeLauncherLayout(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(0xFF171020))
-                .padding(horizontal = 14.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(7.dp),
+                .horizontalScroll(rememberScrollState())
+                .padding(horizontal = 20.dp, vertical = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(11.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             EnderNavChip("JOGAR", selectedPage == 0) { onSelectTab(1, -1) }
@@ -308,10 +310,10 @@ private fun EnderNavChip(label: String, selected: Boolean, onClick: () -> Unit) 
             .background(if (selected) Color(0xFF49246B) else Color(0xFF21182B))
             .border(BorderStroke(1.dp, if (selected) Color(0xFFC58AFF) else Color(0xFF392747)), shape)
             .clickable { onClick() }
-            .padding(horizontal = 12.dp, vertical = 9.dp),
+            .padding(horizontal = 17.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(label, color = if (selected) Color.White else Color(0xFFB9A7C8), fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.7.sp)
+        Text(label, color = if (selected) Color.White else Color(0xFFB9A7C8), fontSize = 10.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.7.sp)
     }
 }
 
@@ -327,8 +329,8 @@ private fun EnderPortalHome(
     onPlayVersion: (Version) -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxSize().padding(22.dp),
-        horizontalArrangement = Arrangement.spacedBy(18.dp)
+        modifier = Modifier.fillMaxSize().padding(28.dp),
+        horizontalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         // Minimal account panel: no promotional hero, news, or extra dashboard tiles.
         Column(
@@ -336,8 +338,8 @@ private fun EnderPortalHome(
                 .clip(RoundedCornerShape(18.dp))
                 .background(Color(0xFF171020))
                 .border(BorderStroke(1.dp, Color(0xFF49305D)), RoundedCornerShape(18.dp))
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+                .padding(26.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("SUA CONTA", color = Color(0xFFCDA7EC), fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
@@ -386,7 +388,7 @@ private fun EnderPortalHome(
                 .clip(RoundedCornerShape(18.dp))
                 .background(Color(0xFF120D19))
                 .border(BorderStroke(1.dp, Color(0xFF49305D)), RoundedCornerShape(18.dp))
-                .padding(18.dp)
+                .padding(24.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
@@ -845,7 +847,7 @@ fun ForkWarningDialog(
                 .clip(RoundedCornerShape(4.dp))
                 .background(Color(0xFF1E1E20))
                 .border(BorderStroke(1.5.dp, Color(0xFF383838)), RoundedCornerShape(4.dp))
-                .padding(18.dp)
+                .padding(24.dp)
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
