@@ -66,7 +66,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.cubiq.app"
+        applicationId = "com.ender.launcher"
         minSdk = 26
         targetSdk = 34
         versionCode = launcherVersionCode
