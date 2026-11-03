@@ -108,26 +108,17 @@ fun LandscapeLauncherLayout(
     onOpenLink: (String) -> Unit
 ) {
     val context = LocalContext.current
-    var showVersionMenu by remember { mutableStateOf(false) }
-
-    // Map the active view:
-    // 0: Play
-    // 1: Installations
-    // 2: Skins
-    // 3: Patch Notes
-    // 4: News
-    // 5: Mods
-    // 6: Profile
-    val activeLandscapeIndex = when {
-        selectedBottomNav == 0 -> 4 // News
-        selectedBottomNav == 2 -> 5 // Mods
-        selectedBottomNav == 3 -> 6 // Profile
-        selectedBottomNav == 1 && activeTab == 0 -> 1 // Installations
-        selectedBottomNav == 1 && activeTab == 1 -> 2 // Skins
-        selectedBottomNav == 1 && activeTab == 2 -> 3 // Patch Notes
-        else -> 0 // Play
+    val selectedPage = when {
+        selectedBottomNav == 0 -> 4
+        selectedBottomNav == 2 -> 5
+        selectedBottomNav == 3 -> 6
+        selectedBottomNav == 1 && activeTab == 0 -> 1
+        selectedBottomNav == 1 && activeTab == 1 -> 2
+        selectedBottomNav == 1 && activeTab == 2 -> 3
+        else -> 0
     }
-
+    val pageTitle = listOf("PORTAL", "INSTALAÇÕES", "CAPAS", "NOVIDADES", "NOTÍCIAS", "MODS", "JOGADOR")
+        .getOrElse(selectedPage) { "PORTAL" }
     val onOpenFiles: () -> Unit = {
         com.movtery.zalithlauncher.filemanager.FileManagerLauncher.launch(
             context = context,
@@ -136,7 +127,6 @@ fun LandscapeLauncherLayout(
             logsDir = PathManager.DIR_LAUNCHER_LOGS.absolutePath
         )
     }
-
     val onOpenMultiplayer: () -> Unit = {
         backStackViewModel.mainScreen.removeAndNavigateTo(
             removes = backStackViewModel.clearBeforeNavKeys,
@@ -144,216 +134,225 @@ fun LandscapeLauncherLayout(
         )
     }
 
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0F1012))
+            .background(Color(0xFF090711))
     ) {
-        // 1. Left Vertical Navigation Sidebar
-        Column(
+        // Ender identity header: a compact top command bar, not the inherited Cubiq sidebar.
+        Row(
             modifier = Modifier
-                .width(210.dp)
-                .fillMaxHeight()
-                .background(Color(0xFF141517))
-                .border(BorderStroke(1.dp, Color(0xFF232528)))
-                .padding(vertical = 10.dp, horizontal = 8.dp)
+                .fillMaxWidth()
+                .height(58.dp)
+                .background(Color(0xFF100B1B))
+                .padding(horizontal = 18.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // User Header Profile Pill
+            Image(
+                painter = painterResource(R.drawable.ic_ender_launcher),
+                contentDescription = "Ender Launcher",
+                modifier = Modifier.size(38.dp)
+            )
+            Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
+                Text("ENDER", color = Color(0xFFE5C7FF), fontSize = 17.sp, fontWeight = FontWeight.Black, letterSpacing = 3.sp)
+                Text("JAVA MOBILE • THE END", color = Color(0xFF9C83B4), fontSize = 9.sp, letterSpacing = 1.5.sp)
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Text(pageTitle, color = Color(0xFFCC9BFF), fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
+            Spacer(modifier = Modifier.width(10.dp))
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(6.dp))
-                    .clickable { onSelectTab(3, -1) } // Go to profile
-                    .padding(horizontal = 8.dp, vertical = 7.dp),
+                    .clip(RoundedCornerShape(30.dp))
+                    .background(Color(0xFF21152E))
+                    .clickable { onSelectTab(3, -1) }
+                    .padding(horizontal = 12.dp, vertical = 7.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 val skinFile = account?.getSkinFile()
                 if (account != null && skinFile != null && skinFile.exists()) {
-                    PlayerFace(account = account, avatarSize = 34.dp)
+                    PlayerFace(account = account, avatarSize = 27.dp)
                 } else {
-                    Image(
-                        painter = painterResource(R.drawable.ic_mc_pc_profile),
-                        contentDescription = "Player Face",
-                        modifier = Modifier
-                            .size(34.dp)
-                            .clip(RoundedCornerShape(4.dp)),
-                        contentScale = ContentScale.Fit
-                    )
+                    Image(painter = painterResource(R.drawable.ic_mc_pc_profile), contentDescription = null, modifier = Modifier.size(27.dp))
                 }
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = account?.username ?: "Cubiq",
-                        color = Color.White,
-                        fontFamily = MinecraftFontFamily,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.5.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Text(
-                        text = account?.let { "(${getAccountTypeName(it)})" } ?: "(Offline)",
-                        color = Color(0xFFAAAAAA),
-                        fontFamily = MinecraftFontFamily,
-                        fontSize = 10.sp
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            // Navigation Items List with Scroll Slider
-            val sidebarScrollState = rememberScrollState()
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .verticalScrollWithBar(sidebarScrollState),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                // Group 1: Game & Customization
-                LandscapeNavButton(
-                    label = "Play",
-                    iconRes = R.drawable.ic_mc_pc_versions,
-                    isActive = activeLandscapeIndex == 0,
-                    onClick = { onSelectTab(1, -1) }
-                )
-                LandscapeNavButton(
-                    label = "Installations",
-                    iconRes = R.drawable.block_crafting_table,
-                    isActive = activeLandscapeIndex == 1,
-                    onClick = { onSelectTab(1, 0) }
-                )
-                LandscapeNavButton(
-                    label = "Skins",
-                    iconRes = R.drawable.ic_mc_steve_head,
-                    isActive = activeLandscapeIndex == 2,
-                    onClick = { onSelectTab(1, 1) }
-                )
-                LandscapeNavButton(
-                    label = "Patch Notes",
-                    iconRes = R.drawable.ic_mc_book_and_quill,
-                    isActive = activeLandscapeIndex == 3,
-                    onClick = { onSelectTab(1, 2) }
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Group 2: Community & Launcher Settings
-                LandscapeNavButton(
-                    label = "News",
-                    iconRes = R.drawable.ic_mc_pc_news,
-                    isActive = activeLandscapeIndex == 4,
-                    onClick = { onSelectTab(0, -1) }
-                )
-                LandscapeNavButton(
-                    label = "Mods",
-                    iconRes = R.drawable.ic_mc_pc_mods,
-                    isActive = activeLandscapeIndex == 5,
-                    onClick = { onSelectTab(2, -1) }
-                )
-                LandscapeNavButton(
-                    label = "Profile",
-                    iconRes = R.drawable.ic_mc_pc_profile,
-                    isActive = activeLandscapeIndex == 6,
-                    onClick = { onSelectTab(3, -1) }
-                )
+                Text(account?.username ?: "Convidado", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
             }
         }
 
-        // 2. Main Content Area
-        Box(
+        // Horizontal navigation rail with a distinct Ender visual language.
+        Row(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(Color(0xFF171020))
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(7.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            when (activeLandscapeIndex) {
-                // 0: Play Screen (Full Hero banner + Centered Logo + Floating Bottom Dock)
-                0 -> {
-                    LandscapePlayScreen(
+            EnderNavChip("JOGAR", selectedPage == 0) { onSelectTab(1, -1) }
+            EnderNavChip("INSTALAÇÕES", selectedPage == 1) { onSelectTab(1, 0) }
+            EnderNavChip("CAPAS", selectedPage == 2) { onSelectTab(1, 1) }
+            EnderNavChip("ATUALIZAÇÕES", selectedPage == 3) { onSelectTab(1, 2) }
+            EnderNavChip("NOTÍCIAS", selectedPage == 4) { onSelectTab(0, -1) }
+            EnderNavChip("MODS", selectedPage == 5) { onSelectTab(2, -1) }
+            EnderNavChip("PERFIL", selectedPage == 6) { onSelectTab(3, -1) }
+            Spacer(modifier = Modifier.weight(1f))
+            EnderNavChip("ARQUIVOS", false, onOpenFiles)
+            EnderNavChip("MULTIJOGADOR", false, onOpenMultiplayer)
+        }
+
+        Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+            when (selectedPage) {
+                1 -> MinecraftInstallationsScreen(
+                    currentVersion = currentVersion,
+                    backStackViewModel = backStackViewModel,
+                    navigateToVersions = navigateToVersions,
+                    onLaunchGame = onLaunchGame,
+                    onBackClick = { onSelectTab(1, -1) }
+                )
+                2 -> MinecraftSkinsScreen(account = account, onBackClick = { onSelectTab(1, -1) })
+                3 -> MinecraftPatchNotesScreen(onOpenLink = onOpenLink, onBackClick = { onSelectTab(1, -1) })
+                4 -> MinecraftNewsScreen(onOpenLink = onOpenLink, onBackClick = { onSelectTab(1, -1) })
+                5 -> MinecraftModsScreen(
+                    currentVersion = currentVersion,
+                    backStackViewModel = backStackViewModel,
+                    navigateToVersions = navigateToVersions,
+                    onBackClick = { onSelectTab(1, -1) }
+                )
+                6 -> MinecraftProfileScreen(
+                    account = account,
+                    backStackViewModel = backStackViewModel,
+                    onBackClick = { onSelectTab(1, -1) }
+                )
+                else -> {
+                    EnderPortalHome(
+                        account = account,
                         currentVersion = currentVersion,
                         allVersions = allVersions,
-                        account = account,
                         isRefreshingVersions = isRefreshingVersions,
-                        showVersionMenu = showVersionMenu,
-                        onShowVersionMenuChange = { showVersionMenu = it },
-                        onPlayClick = handlePlayClick,
+                        onPlay = handlePlayClick,
                         onManageInstallations = { onSelectTab(1, 0) },
-                        onOpenFiles = onOpenFiles,
-                        onOpenMultiplayer = onOpenMultiplayer,
-                        onSelectTab = onSelectTab
-                    )
-                }
-
-                // 1: Installations
-                1 -> {
-                    MinecraftInstallationsScreen(
-                        currentVersion = currentVersion,
-                        backStackViewModel = backStackViewModel,
-                        navigateToVersions = navigateToVersions,
-                        onLaunchGame = onLaunchGame,
-                        onBackClick = { onSelectTab(1, -1) }
-                    )
-                }
-
-                // 2: Skins
-                2 -> {
-                    MinecraftSkinsScreen(
-                        account = account,
-                        onBackClick = { onSelectTab(1, -1) }
-                    )
-                }
-
-                // 3: Patch Notes
-                3 -> {
-                    MinecraftPatchNotesScreen(
-                        onOpenLink = onOpenLink,
-                        onBackClick = { onSelectTab(1, -1) }
-                    )
-                }
-
-                // 4: News
-                4 -> {
-                    MinecraftNewsScreen(
-                        onOpenLink = onOpenLink,
-                        onBackClick = { onSelectTab(1, -1) }
-                    )
-                }
-
-                // 5: Mods
-                5 -> {
-                    MinecraftModsScreen(
-                        currentVersion = currentVersion,
-                        backStackViewModel = backStackViewModel,
-                        navigateToVersions = navigateToVersions,
-                        onBackClick = { onSelectTab(1, -1) }
-                    )
-                }
-
-                // 6: Profile
-                6 -> {
-                    MinecraftProfileScreen(
-                        account = account,
-                        backStackViewModel = backStackViewModel,
-                        onBackClick = { onSelectTab(1, -1) }
+                        onSelectVersion = { version -> VersionsManager.saveVersion(version) },
+                        onPlayVersion = handlePlayVersion
                     )
                 }
             }
-
-            if (activeLandscapeIndex != 0) {
+            if (selectedPage != 0) {
                 Box(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                    modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
-                    CompactBackgroundDownloadBar(
-                        onExpand = {
-                            InstallationDownloadManager.showDialog()
-                        }
-                    )
+                    CompactBackgroundDownloadBar(onExpand = { InstallationDownloadManager.showDialog() })
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun EnderNavChip(label: String, selected: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(9.dp)
+    Row(
+        modifier = Modifier
+            .clip(shape)
+            .background(if (selected) Color(0xFF49246B) else Color(0xFF21182B))
+            .border(BorderStroke(1.dp, if (selected) Color(0xFFC58AFF) else Color(0xFF392747)), shape)
+            .clickable { onClick() }
+            .padding(horizontal = 12.dp, vertical = 9.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(label, color = if (selected) Color.White else Color(0xFFB9A7C8), fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.7.sp)
+    }
+}
+
+@Composable
+private fun EnderPortalHome(
+    account: Account?,
+    currentVersion: Version?,
+    allVersions: List<Version>,
+    isRefreshingVersions: Boolean,
+    onPlay: () -> Unit,
+    onManageInstallations: () -> Unit,
+    onSelectVersion: (Version) -> Unit,
+    onPlayVersion: (Version) -> Unit
+) {
+    var showVersions by remember { mutableStateOf(false) }
+    Row(modifier = Modifier.fillMaxSize().padding(18.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        Box(modifier = Modifier.weight(1.15f).fillMaxHeight().clip(RoundedCornerShape(18.dp))) {
+            EnderDimensionBackdrop()
+            Column(
+                modifier = Modifier.align(Alignment.BottomStart).padding(26.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text("BEM-VINDO AO FIM", color = Color(0xFFE3C6FF), fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 3.sp)
+                Text("SUA PRÓXIMA\nAVENTURA COMEÇA AQUI", color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Black, lineHeight = 30.sp)
+                Text("Minecraft Java Edition • Ender Launcher", color = Color(0xFFC1B0D1), fontSize = 11.sp)
+            }
+            Box(modifier = Modifier.align(Alignment.TopEnd).padding(16.dp).clip(RoundedCornerShape(20.dp)).background(Color(0xAA160D22)).padding(horizontal = 12.dp, vertical = 7.dp)) {
+                Text("DIMENSÃO ENDER", color = Color(0xFFE1B9FF), fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+            }
+        }
+        Column(modifier = Modifier.weight(0.85f).fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Column(
+                modifier = Modifier.fillMaxWidth().weight(1f).clip(RoundedCornerShape(16.dp))
+                    .background(Color(0xFF171020)).border(BorderStroke(1.dp, Color(0xFF392747)), RoundedCornerShape(16.dp))
+                    .padding(18.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Text("CENTRAL DE JOGO", color = Color(0xFFD8B5F5), fontSize = 10.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
+                Text(currentVersion?.getVersionName() ?: "Nenhuma versão selecionada", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Text(if (account == null) "Entre com uma conta ou use o perfil offline." else "Jogador: ${account.username}", color = Color(0xFFAA9AB8), fontSize = 11.sp)
+                Spacer(modifier = Modifier.weight(1f))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier.weight(1f).clip(RoundedCornerShape(10.dp)).background(Color(0xFF2B1D38))
+                            .clickable { showVersions = true }.padding(12.dp)
+                    ) {
+                        Text("ESCOLHER VERSÃO  ▾", color = Color(0xFFDCC1F4), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    }
+                    Box(
+                        modifier = Modifier.weight(1f).clip(RoundedCornerShape(10.dp)).background(Color(0xFF7D3DB0))
+                            .clickable(onClick = onManageInstallations).padding(12.dp)
+                    ) {
+                        Text("INSTALAÇÕES", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+                Box(
+                    modifier = Modifier.fillMaxWidth().height(54.dp).clip(RoundedCornerShape(12.dp))
+                        .background(Brush.horizontalGradient(listOf(Color(0xFF9D55D4), Color(0xFF542477))))
+                        .clickable(onClick = onPlay).padding(12.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(if (isRefreshingVersions) "CARREGANDO..." else "▶  INICIAR MINECRAFT", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Black, letterSpacing = 1.sp)
+                }
+                DropdownMenu(expanded = showVersions, onDismissRequest = { showVersions = false }) {
+                    allVersions.forEach { version ->
+                        DropdownMenuItem(
+                            text = { Text(version.getVersionName()) },
+                            onClick = { onSelectVersion(version); showVersions = false }
+                        )
+                    }
+                    DropdownMenuItem(text = { Text("Gerenciar instalações") }, onClick = { showVersions = false; onManageInstallations() })
+                }
+            }
+            Row(modifier = Modifier.fillMaxWidth().height(104.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                EnderInfoTile("PERFIL", account?.username ?: "Offline")
+                EnderInfoTile("VERSÕES", "${allVersions.size} instaladas")
+                EnderInfoTile("AMBIENTE", "Java Edition")
+            }
+        }
+    }
+}
+
+@Composable
+private fun EnderInfoTile(title: String, value: String) {
+    Column(
+        modifier = Modifier.weight(1f).fillMaxHeight().clip(RoundedCornerShape(13.dp))
+            .background(Color(0xFF171020)).border(BorderStroke(1.dp, Color(0xFF392747)), RoundedCornerShape(13.dp))
+            .padding(12.dp),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(title, color = Color(0xFF9F83B7), fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+        Text(value, color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
     }
 }
 
