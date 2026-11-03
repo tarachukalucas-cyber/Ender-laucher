@@ -313,6 +313,9 @@ fun LauncherScreen(
                     .fillMaxSize()
                     .background(Color(0xFF141414))
             ) {
+                // Original End-inspired scene drawn in Compose, not a pasted screenshot.
+                EnderDimensionBackdrop()
+
                 Column(
                     modifier = Modifier.fillMaxSize()
                 ) {
