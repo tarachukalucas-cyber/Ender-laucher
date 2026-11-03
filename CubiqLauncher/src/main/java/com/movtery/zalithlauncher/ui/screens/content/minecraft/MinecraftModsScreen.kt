@@ -1,5 +1,5 @@
 /*
- * Cubiq Launcher
+ * Ender Launcher
  * Minecraft PC Launcher Content & Mods Hub (Integrated Real Zalith Downloaders)
  */
 
@@ -182,8 +182,8 @@ fun MinecraftModsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(4.dp))
-                        .background(Color(0xFF1A241C))
-                        .border(BorderStroke(1.dp, Color(0xFF3C8527)), RoundedCornerShape(4.dp))
+                        .background(Color(0xFF21152D))
+                        .border(BorderStroke(1.dp, Color(0xFF8F50C5)), RoundedCornerShape(4.dp))
                         .padding(12.dp)
                 ) {
                     Row(
@@ -194,7 +194,7 @@ fun MinecraftModsScreen(
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 text = "ACTIVE: ${currentVersion.getVersionName()}",
-                                color = Color(0xFF55FF55),
+                                color = Color(0xFFC99AFF),
                                 fontFamily = MinecraftFontFamily,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 13.sp
@@ -292,7 +292,7 @@ fun MinecraftModsScreen(
                                     Box(
                                         modifier = Modifier
                                             .clip(RoundedCornerShape(2.dp))
-                                            .background(Color(0xFF2E382E))
+                                            .background(Color(0xFF342342))
                                             .padding(horizontal = 5.dp, vertical = 2.dp)
                                     ) {
                                         Text(
