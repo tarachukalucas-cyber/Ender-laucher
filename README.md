@@ -3,9 +3,9 @@
 # 🟩 Ender Launcher
 ### The Premier Minecraft: Java Edition Launcher for Android
 
-[![GitHub Release](https://img.shields.io/github/v/release/VivxKumar07/Cubiq-Launcher?style=for-the-badge&color=55FF55&logo=github)](https://github.com/tarachukalucas-cyber/Ender-laucher/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/tarachukalucas-cyber/Ender-laucher?style=for-the-badge&color=B56CFF&logo=github)](https://github.com/tarachukalucas-cyber/Ender-laucher/releases/latest)
 [![Platform](https://img.shields.io/badge/Platform-Android_8.0+-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/tarachukalucas-cyber/Ender-laucher)
-[![Minecraft](https://img.shields.io/badge/Minecraft-Java_Edition_1.7--1.21+-3C8527?style=for-the-badge&logo=minecraft&logoColor=white)](https://www.minecraft.net)
+[![Minecraft](https://img.shields.io/badge/Minecraft-Java_Edition_1.7--1.21+-6F35A5?style=for-the-badge&logo=minecraft&logoColor=white)](https://www.minecraft.net)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)](LICENSE)
 
 <br/>
@@ -128,7 +128,7 @@ Yes. By installing Fabric with Iris/Sodium, or Forge with Embeddium/Oculus, you 
 ```bash
 # Clone repository with submodules
 git clone --recursive https://github.com/tarachukalucas-cyber/Ender-laucher.git
-cd Cubiq-Launcher
+cd Ender-laucher
 
 # Compile Debug APK
 ./gradlew CubiqLauncher:assembleDebug
