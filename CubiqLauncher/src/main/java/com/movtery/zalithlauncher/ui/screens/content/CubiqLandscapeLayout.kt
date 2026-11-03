@@ -8,6 +8,7 @@ package com.movtery.zalithlauncher.ui.screens.content
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -42,6 +43,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -108,16 +111,35 @@ fun LandscapeLauncherLayout(
     onOpenLink: (String) -> Unit
 ) {
     val context = LocalContext.current
+    val personalizationPrefs = remember(context) {
+        context.getSharedPreferences("ender_personalization", Context.MODE_PRIVATE)
+    }
+    var customBackgroundUri by remember {
+        mutableStateOf(personalizationPrefs.getString("background_uri", null)?.let(Uri::parse))
+    }
+    var backgroundDim by remember {
+        mutableStateOf(personalizationPrefs.getFloat("background_dim", 0.62f))
+    }
+    val imagePicker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) {
+            try {
+                context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            } catch (_: SecurityException) { }
+            customBackgroundUri = uri
+            personalizationPrefs.edit().putString("background_uri", uri.toString()).apply()
+        }
+    }
     val selectedPage = when {
         selectedBottomNav == 0 -> 4
         selectedBottomNav == 2 -> 5
+        selectedBottomNav == 3 && activeTab == 1 -> 7
         selectedBottomNav == 3 -> 6
         selectedBottomNav == 1 && activeTab == 0 -> 1
         selectedBottomNav == 1 && activeTab == 1 -> 2
         selectedBottomNav == 1 && activeTab == 2 -> 3
         else -> 0
     }
-    val pageTitle = listOf("PORTAL", "INSTALAÇÕES", "CAPAS", "NOVIDADES", "NOTÍCIAS", "MODS", "JOGADOR")
+    val pageTitle = listOf("PORTAL", "INSTALAÇÕES", "CAPAS", "NOVIDADES", "NOTÍCIAS", "MODS", "JOGADOR", "PERSONALIZAR")
         .getOrElse(selectedPage) { "PORTAL" }
     val onOpenFiles: () -> Unit = {
         com.movtery.zalithlauncher.filemanager.FileManagerLauncher.launch(
@@ -134,11 +156,21 @@ fun LandscapeLauncherLayout(
         )
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF090711))
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        if (customBackgroundUri != null) {
+            coil3.compose.AsyncImage(
+                model = customBackgroundUri,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        } else {
+            EnderDimensionBackdrop(modifier = Modifier.fillMaxSize())
+        }
+        Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = backgroundDim.coerceIn(0.25f, 0.85f))))
+        Column(
+            modifier = Modifier.fillMaxSize().background(Color(0x66090711))
+        ) {
         // Ender identity header: a compact top command bar, not the inherited Cubiq sidebar.
         Row(
             modifier = Modifier
@@ -196,6 +228,7 @@ fun LandscapeLauncherLayout(
             EnderNavChip("NOTÍCIAS", selectedPage == 4) { onSelectTab(0, -1) }
             EnderNavChip("MODS", selectedPage == 5) { onSelectTab(2, -1) }
             EnderNavChip("PERFIL", selectedPage == 6) { onSelectTab(3, -1) }
+            EnderNavChip("PERSONALIZAR", selectedPage == 7) { onSelectTab(3, 1) }
             Spacer(modifier = Modifier.weight(1f))
             EnderNavChip("ARQUIVOS", false, onOpenFiles)
             EnderNavChip("MULTIJOGADOR", false, onOpenMultiplayer)
@@ -224,6 +257,23 @@ fun LandscapeLauncherLayout(
                     backStackViewModel = backStackViewModel,
                     onBackClick = { onSelectTab(1, -1) }
                 )
+                7 -> EnderPersonalizationScreen(
+                    backgroundUri = customBackgroundUri,
+                    backgroundDim = backgroundDim,
+                    onChooseBackground = { imagePicker.launch(arrayOf("image/*")) },
+                    onResetBackground = {
+                        customBackgroundUri?.let { uri ->
+                            try { context.contentResolver.releasePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
+                            catch (_: SecurityException) { }
+                        }
+                        customBackgroundUri = null
+                        personalizationPrefs.edit().remove("background_uri").apply()
+                    },
+                    onDimChanged = { value ->
+                        backgroundDim = value
+                        personalizationPrefs.edit().putFloat("background_dim", value).apply()
+                    }
+                )
                 else -> {
                     EnderPortalHome(
                         account = account,
@@ -244,6 +294,7 @@ fun LandscapeLauncherLayout(
                     CompactBackgroundDownloadBar(onExpand = { InstallationDownloadManager.showDialog() })
                 }
             }
+        }
         }
     }
 }
