@@ -335,18 +335,18 @@ private fun EnderPortalHome(
                 }
             }
             Row(modifier = Modifier.fillMaxWidth().height(104.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                EnderInfoTile("PERFIL", account?.username ?: "Offline")
-                EnderInfoTile("VERSÕES", "${allVersions.size} instaladas")
-                EnderInfoTile("AMBIENTE", "Java Edition")
+                EnderInfoTile("PERFIL", account?.username ?: "Offline", Modifier.weight(1f))
+                EnderInfoTile("VERSÕES", "${allVersions.size} instaladas", Modifier.weight(1f))
+                EnderInfoTile("AMBIENTE", "Java Edition", Modifier.weight(1f))
             }
         }
     }
 }
 
 @Composable
-private fun EnderInfoTile(title: String, value: String) {
+private fun EnderInfoTile(title: String, value: String, modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.weight(1f).fillMaxHeight().clip(RoundedCornerShape(13.dp))
+        modifier = modifier.fillMaxHeight().clip(RoundedCornerShape(13.dp))
             .background(Color(0xFF171020)).border(BorderStroke(1.dp, Color(0xFF392747)), RoundedCornerShape(13.dp))
             .padding(12.dp),
         verticalArrangement = Arrangement.Center
