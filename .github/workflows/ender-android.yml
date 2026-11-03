@@ -35,8 +35,13 @@ jobs:
           path: ${{ env.ANDROID_SDK_ROOT }}/ndk/25.2.9519653
           key: android-ndk-25.2.9519653
 
-      - name: Install Android NDK
-        run: sdkmanager --channel=3 "ndk;25.2.9519653" "platforms;android-37"
+      - name: Install Android NDK and SDK platform
+        run: |
+          sdkmanager --channel=3 "ndk;25.2.9519653" "platforms;android-37.0"
+          # Android Gradle Plugin looks for android-37, while SDK Manager installs 37.0.
+          if [ ! -e "$ANDROID_SDK_ROOT/platforms/android-37" ]; then
+            ln -s android-37.0 "$ANDROID_SDK_ROOT/platforms/android-37"
+          fi
 
       - name: Build arm64 debug APK
         run: |
