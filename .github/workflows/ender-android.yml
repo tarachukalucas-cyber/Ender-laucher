@@ -22,9 +22,16 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+          cache: gradle
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Cache Android NDK
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.ANDROID_SDK_ROOT }}/ndk/25.2.9519653
+          key: android-ndk-25.2.9519653
 
       - name: Install Android NDK
         run: sdkmanager "ndk;25.2.9519653" "platforms;android-37" "platforms;android-37-ext2"
@@ -32,7 +39,7 @@ jobs:
       - name: Build arm64 debug APK
         run: |
           chmod +x ./gradlew
-          ./gradlew :CubiqLauncher:assembleDebug -PprojectArch=arm64 --stacktrace
+          ./gradlew :CubiqLauncher:assembleDebug -PprojectArch=arm64 --build-cache --parallel --stacktrace
 
       - name: Package APK
         run: |
