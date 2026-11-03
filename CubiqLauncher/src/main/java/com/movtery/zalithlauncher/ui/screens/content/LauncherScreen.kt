@@ -798,7 +798,7 @@ private fun MinecraftLaunchLoadingOverlay() {
             Spacer(modifier = Modifier.height(14.dp))
 
             Text(
-                text = "LOADING CUBIQ...",
+                text = "LOADING ENDER...",
                 color = Color(0xFFAAAAAA),
                 fontFamily = MinecraftFontFamily,
                 fontWeight = FontWeight.Bold,
@@ -811,7 +811,7 @@ private fun MinecraftLaunchLoadingOverlay() {
 
 /**
  * Top Account Header Bar:
- * Displays Player Head with cyan/blue border, Player Name with chevron arrow, and (Microsoft Account)
+ * Displays Player Head with Ender violet border, Player Name with chevron arrow, and (Microsoft Account)
  */
 /**
  * Top Account Header Bar:
