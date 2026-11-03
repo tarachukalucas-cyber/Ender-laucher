@@ -85,7 +85,7 @@ import com.movtery.zalithlauncher.game.versioninfo.MinecraftOfficialContentManag
 import com.movtery.zalithlauncher.viewmodel.ScreenBackStackViewModel
 
 /**
- * Landscape Mode Layout strictly matching Image 2 collage:
+ * Ender Launcher landscape workspace with original navigation and layout:
  * - Left vertical sidebar: Avatar, Username, Status, Play, Installations, Skins, Patch Notes, News, Versions, Mods, Profile
  * - Top-right: FILES & MULTIPLAYER buttons
  * - Main content: Play screen hero banner + floating bottom dock, or the respective sub-screen
@@ -796,7 +796,7 @@ fun ForkWarningDialog(
                 // Body content
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "Cubiq Launcher is an independent, unofficial fork of Zalith Launcher 2, licensed under the GNU General Public License v3.0 (GPLv3).",
+                        text = "Ender Launcher is an independent, unofficial fork based on Zalith Launcher 2, licensed under the GNU General Public License v3.0 (GPLv3).",
                         color = Color(0xFFE2E2E2),
                         fontFamily = MinecraftFontFamily,
                         fontSize = 11.5.sp,
@@ -821,7 +821,7 @@ fun ForkWarningDialog(
                     }
 
                     Text(
-                        text = "All modifications and source code comply with GPLv3. For support or bug reports, please use the official Cubiq Launcher community.",
+                        text = "All modifications and source code comply with GPLv3. For support or bug reports, please use the Ender Launcher project community.",
                         color = Color(0xFF888888),
                         fontFamily = MinecraftFontFamily,
                         fontSize = 10.sp,
