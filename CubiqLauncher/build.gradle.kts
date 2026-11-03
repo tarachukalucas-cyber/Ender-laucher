@@ -14,17 +14,17 @@ plugins {
 }
 
 val zalithPackageName = "com.movtery.zalithlauncher"
-val launcherAPPName = project.findProperty("launcher_app_name") as? String ?: error("The \"launcher_app_name\" property is not set in gradle.properties.")
-val launcherName = project.findProperty("launcher_name") as? String ?: error("The \"launcher_name\" property is not set in gradle.properties.")
-val launcherShortName = project.findProperty("launcher_short_name") as? String ?: error("The \"launcher_short_name\" property is not set in gradle.properties.")
-val launcherUrl = project.findProperty("url_home") as? String ?: error("The \"url_home\" property is not set in gradle.properties.")
+val launcherAPPName = project.findProperty("launcher_app_name") as? String ?: "Ender Launcher"
+val launcherName = project.findProperty("launcher_name") as? String ?: "Ender Launcher"
+val launcherShortName = project.findProperty("launcher_short_name") as? String ?: "Ender"
+val launcherUrl = project.findProperty("url_home") as? String ?: "https://github.com/tarachukalucas-cyber/Ender-laucher"
 
-val launcherVersionCode = (project.findProperty("launcher_version_code") as? String)?.toIntOrNull() ?: error("The \"launcher_version_code\" property is not set as an integer in gradle.properties.")
-val launcherVersionName = project.findProperty("launcher_version_name") as? String ?: error("The \"launcher_version_name\" property is not set in gradle.properties.")
+val launcherVersionCode = (project.findProperty("launcher_version_code") as? String)?.toIntOrNull() ?: 1
+val launcherVersionName = project.findProperty("launcher_version_name") as? String ?: "1.0.0"
 
 val defaultOAuthClientID = project.findProperty("oauth_client_id") as? String
-val defaultStorePassword = project.findProperty("default_store_password") as? String ?: error("The \"default_store_password\" property is not set in gradle.properties.")
-val defaultKeyPassword = project.findProperty("default_key_password") as? String ?: error("The \"default_key_password\" property is not set in gradle.properties.")
+val defaultStorePassword = project.findProperty("default_store_password") as? String ?: "android"
+val defaultKeyPassword = project.findProperty("default_key_password") as? String ?: "android"
 val defaultCurseForgeApiKey = project.findProperty("curseforge_api_key") as? String
 
 val projectArch: String = (project.findProperty("projectArch") as? String)
@@ -44,11 +44,7 @@ fun getKeyFromLocal(envKey: String, fileName: String? = null, default: String? =
 
 android {
     namespace = zalithPackageName
-    compileSdk {
-        version = release(37) {
-            minorApiLevel = 2
-        }
-    }
+    compileSdk = 37
 
     signingConfigs {
         create("releaseBuild") {
@@ -66,7 +62,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.cubiq.app"
+        applicationId = "com.ender.launcher"
         minSdk = 26
         targetSdk = 34
         versionCode = launcherVersionCode

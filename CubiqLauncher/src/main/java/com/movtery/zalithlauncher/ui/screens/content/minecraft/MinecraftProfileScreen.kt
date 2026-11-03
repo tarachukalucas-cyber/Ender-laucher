@@ -837,21 +837,21 @@ fun MinecraftProfileScreen(
 
 
 
-                    val outerBorder = if (isTabSelected) Color(0xFF1B4E12) else Color(0xFF38383C)
+                    val outerBorder = if (isTabSelected) Color(0xFF4B2866) else Color(0xFF38383C)
 
                     val topHighlight = if (isTabSelected) {
 
-                        if (isPressed) Color(0xFF194411) else Color(0xFF5AC636)
+                        if (isPressed) Color(0xFF3D2054) else Color(0xFFB56CFF)
 
                     } else {
 
-                        if (isPressed) Color(0xFF1E1E22) else Color(0xFF3E3E44)
+                        if (isPressed) Color(0xFF1E1A24) else Color(0xFF3E3E44)
 
                     }
 
                     val bottomShadow = if (isTabSelected) {
 
-                        if (isPressed) Color(0xFF5AC636) else Color(0xFF194411)
+                        if (isPressed) Color(0xFFB56CFF) else Color(0xFF3D2054)
 
                     } else {
 
@@ -861,9 +861,9 @@ fun MinecraftProfileScreen(
 
                     val bgGradient = if (isTabSelected) {
 
-                        if (isPressed) listOf(Color(0xFF286D19), Color(0xFF205814))
+                        if (isPressed) listOf(Color(0xFF63318A), Color(0xFF4A2766))
 
-                        else listOf(Color(0xFF388E23), Color(0xFF2C741B))
+                        else listOf(Color(0xFF8E4CC0), Color(0xFF71389D))
 
                     } else {
 
@@ -967,7 +967,7 @@ fun MinecraftProfileScreen(
 
                                 shadow = Shadow(
 
-                                    color = if (isTabSelected) Color(0xFF0F2B0A) else Color.Black,
+                                    color = if (isTabSelected) Color(0xFF2A1738) else Color.Black,
 
                                     offset = Offset(1.5f, 1.5f),
 
@@ -1607,7 +1607,7 @@ fun MicrosoftLoginDialog(
 
                 fontSize = 16.sp,
 
-                color = Color(0xFF55FF55)
+                color = Color(0xFFC58AFF)
 
             )
 
@@ -1629,7 +1629,7 @@ fun MicrosoftLoginDialog(
 
                     CircularProgressIndicator(
 
-                        color = Color(0xFF55FF55),
+                        color = Color(0xFFC58AFF),
 
                         strokeWidth = 3.dp,
 
@@ -1677,7 +1677,7 @@ fun MicrosoftLoginDialog(
 
                             .background(Color(0xFF141416))
 
-                            .border(BorderStroke(1.dp, Color(0xFF55FF55)), RoundedCornerShape(3.dp))
+                            .border(BorderStroke(1.dp, Color(0xFFC58AFF)), RoundedCornerShape(3.dp))
 
                             .padding(vertical = 10.dp, horizontal = 14.dp),
 
@@ -1689,7 +1689,7 @@ fun MicrosoftLoginDialog(
 
                             text = msDeviceCodeText,
 
-                            color = Color(0xFF55FF55),
+                            color = Color(0xFFC58AFF),
 
                             fontFamily = MinecraftFontFamily,
 
@@ -2333,7 +2333,7 @@ private fun AddOfflineAccountDialog(
 
                         unfocusedContainerColor = Color(0xFF242426),
 
-                        focusedBorderColor = Color(0xFF55FF55),
+                        focusedBorderColor = Color(0xFFC58AFF),
 
                         unfocusedBorderColor = Color(0xFF383838),
 
@@ -2464,7 +2464,7 @@ private fun ManageOfflineAccountDialog(
 
                 .background(Color(0xFF1E1E20))
 
-                .border(BorderStroke(2.dp, Color(0xFF3C8527)), RoundedCornerShape(4.dp))
+                .border(BorderStroke(2.dp, Color(0xFF8F50C5)), RoundedCornerShape(4.dp))
 
                 .padding(18.dp)
 
@@ -2474,7 +2474,7 @@ private fun ManageOfflineAccountDialog(
 
                 text = "MANAGE OFFLINE ACCOUNT",
 
-                color = Color(0xFF55FF55),
+                color = Color(0xFFC58AFF),
 
                 fontFamily = MinecraftFontFamily,
 
@@ -2529,7 +2529,7 @@ private fun ManageOfflineAccountDialog(
                     fontFamily = MinecraftFontFamily,
                     fontSize = 12.sp
                 ),
-                cursorBrush = SolidColor(Color(0xFF55FF55)),
+                cursorBrush = SolidColor(Color(0xFFC58AFF)),
                 decorationBox = { innerTextField ->
                     Box(
                         modifier = Modifier
@@ -2950,7 +2950,7 @@ private fun CreateGamepadConfigDialog(
 
                         unfocusedContainerColor = Color(0xFF242426),
 
-                        focusedBorderColor = Color(0xFF55FF55),
+                        focusedBorderColor = Color(0xFFC58AFF),
 
                         unfocusedBorderColor = Color(0xFF383838),
 
@@ -3124,7 +3124,7 @@ private fun CreateTouchLayoutDialog(
 
                         unfocusedContainerColor = Color(0xFF242426),
 
-                        focusedBorderColor = Color(0xFF55FF55),
+                        focusedBorderColor = Color(0xFFC58AFF),
 
                         unfocusedBorderColor = Color(0xFF383838),
 
@@ -3168,11 +3168,11 @@ private fun CreateTouchLayoutDialog(
 
                             .clip(RoundedCornerShape(2.dp))
 
-                            .background(if (isSel) Color(0xFF263820) else Color(0xFF242426))
+                            .background(if (isSel) Color(0xFF352044) else Color(0xFF242426))
 
                             .border(
 
-                                BorderStroke(1.dp, if (isSel) Color(0xFF55FF55) else Color(0xFF383838)),
+                                BorderStroke(1.dp, if (isSel) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                                 RoundedCornerShape(2.dp)
 
@@ -3194,7 +3194,7 @@ private fun CreateTouchLayoutDialog(
 
                                 text = template,
 
-                                color = if (isSel) Color(0xFF55FF55) else Color.White,
+                                color = if (isSel) Color(0xFFC58AFF) else Color.White,
 
                                 fontFamily = MinecraftFontFamily,
 
@@ -3226,7 +3226,7 @@ private fun CreateTouchLayoutDialog(
 
                             colors = RadioButtonDefaults.colors(
 
-                                selectedColor = Color(0xFF55FF55),
+                                selectedColor = Color(0xFFC58AFF),
 
                                 unselectedColor = Color(0xFF666666)
 
@@ -3494,7 +3494,7 @@ private fun AccountSection(
 
                 text = if (account != null) "Type: ${getAccountTypeName(account)}" else "Add an account below to play Minecraft",
 
-                color = if (account != null) Color(0xFF55FF55) else Color(0xFFFF5555),
+                color = if (account != null) Color(0xFFC58AFF) else Color(0xFFFF5555),
 
                 fontFamily = MinecraftFontFamily,
 
@@ -3672,11 +3672,11 @@ private fun AccountSection(
 
                         .clip(RoundedCornerShape(2.dp))
 
-                        .background(if (isSelected) Color(0xFF263820) else Color(0xFF242426))
+                        .background(if (isSelected) Color(0xFF352044) else Color(0xFF242426))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isSelected) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isSelected) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(2.dp)
 
@@ -4005,7 +4005,7 @@ private fun GameSettingsTab(
 
                 Text("RAM Allocation", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold)
 
-                Text("${ramValue.toInt()} MB (${String.format(java.util.Locale.ROOT, "%.1f", ramValue / 1024f)} GB)", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                Text("${ramValue.toInt()} MB (${String.format(java.util.Locale.ROOT, "%.1f", ramValue / 1024f)} GB)", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 11.sp, fontWeight = FontWeight.Bold)
 
             }
 
@@ -4037,9 +4037,9 @@ private fun GameSettingsTab(
 
                             .clip(RoundedCornerShape(2.dp))
 
-                            .background(if (isPresetSel) Color(0xFF2E6930) else Color(0xFF28282A))
+                            .background(if (isPresetSel) Color(0xFF593078) else Color(0xFF28282A))
 
-                            .border(BorderStroke(1.dp, if (isPresetSel) Color(0xFF55FF55) else Color(0xFF404040)), RoundedCornerShape(2.dp))
+                            .border(BorderStroke(1.dp, if (isPresetSel) Color(0xFFC58AFF) else Color(0xFF404040)), RoundedCornerShape(2.dp))
 
                             .clickable {
 
@@ -4059,7 +4059,7 @@ private fun GameSettingsTab(
 
                             text = if (presetMb >= 1024f) "${(presetMb / 1024f).toInt()} GB" else "${presetMb.toInt()} MB",
 
-                            color = if (isPresetSel) Color(0xFF55FF55) else Color.White,
+                            color = if (isPresetSel) Color(0xFFC58AFF) else Color.White,
 
                             fontFamily = MinecraftFontFamily,
 
@@ -4097,9 +4097,9 @@ private fun GameSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -4161,7 +4161,7 @@ private fun GameSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -4192,7 +4192,7 @@ private fun GameSettingsTab(
                 },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.White,
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
                     uncheckedThumbColor = Color(0xFF888888),
                     uncheckedTrackColor = Color(0xFF333333)
                 )
@@ -4237,7 +4237,7 @@ private fun GameSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -4287,7 +4287,7 @@ private fun GameSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -4331,7 +4331,7 @@ private fun GameSettingsTab(
 
                     text = if (showAdvancedGameOptions) "▼" else "▶",
 
-                    color = Color(0xFF55FF55),
+                    color = Color(0xFFC58AFF),
 
                     fontFamily = MinecraftFontFamily,
 
@@ -4423,7 +4423,7 @@ private fun GameSettingsTab(
 
                             unfocusedContainerColor = Color(0xFF242426),
 
-                            focusedBorderColor = Color(0xFF55FF55),
+                            focusedBorderColor = Color(0xFFC58AFF),
 
                             unfocusedBorderColor = Color(0xFF383838),
 
@@ -4509,7 +4509,7 @@ private fun GameSettingsTab(
 
                             unfocusedContainerColor = Color(0xFF242426),
 
-                            focusedBorderColor = Color(0xFF55FF55),
+                            focusedBorderColor = Color(0xFFC58AFF),
 
                             unfocusedBorderColor = Color(0xFF383838),
 
@@ -4561,7 +4561,7 @@ private fun GameSettingsTab(
 
                             unfocusedContainerColor = Color(0xFF242426),
 
-                            focusedBorderColor = Color(0xFF55FF55),
+                            focusedBorderColor = Color(0xFFC58AFF),
 
                             unfocusedBorderColor = Color(0xFF383838),
 
@@ -4613,7 +4613,7 @@ private fun GameSettingsTab(
 
                             checkedThumbColor = Color.White,
 
-                            checkedTrackColor = Color(0xFF3C8527),
+                            checkedTrackColor = Color(0xFF8F50C5),
 
                             uncheckedThumbColor = Color(0xFF888888),
 
@@ -4641,7 +4641,7 @@ private fun GameSettingsTab(
 
                         Text("Console Log Text Size", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 11.5.sp)
 
-                        Text("${logTextSize.toInt()} sp", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 11.5.sp)
+                        Text("${logTextSize.toInt()} sp", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 11.5.sp)
 
                     }
 
@@ -4661,9 +4661,9 @@ private fun GameSettingsTab(
 
                         colors = SliderDefaults.colors(
 
-                            thumbColor = Color(0xFF55FF55),
+                            thumbColor = Color(0xFFC58AFF),
 
-                            activeTrackColor = Color(0xFF3C8527),
+                            activeTrackColor = Color(0xFF8F50C5),
 
                             inactiveTrackColor = Color(0xFF333333)
 
@@ -4691,7 +4691,7 @@ private fun GameSettingsTab(
 
                         Text("Log Buffer Flush Interval", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 11.5.sp)
 
-                        Text("${flushInterval.toInt()} ms", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 11.5.sp)
+                        Text("${flushInterval.toInt()} ms", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 11.5.sp)
 
                     }
 
@@ -4711,9 +4711,9 @@ private fun GameSettingsTab(
 
                         colors = SliderDefaults.colors(
 
-                            thumbColor = Color(0xFF55FF55),
+                            thumbColor = Color(0xFFC58AFF),
 
-                            activeTrackColor = Color(0xFF3C8527),
+                            activeTrackColor = Color(0xFF8F50C5),
 
                             inactiveTrackColor = Color(0xFF333333)
 
@@ -4868,11 +4868,11 @@ private fun VideoSettingsTab(
 
                         .clip(RoundedCornerShape(2.dp))
 
-                        .background(if (isSel) Color(0xFF263820) else Color(0xFF242426))
+                        .background(if (isSel) Color(0xFF352044) else Color(0xFF242426))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isSel) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isSel) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(2.dp)
 
@@ -4908,7 +4908,7 @@ private fun VideoSettingsTab(
 
                                 text = renderer.getRendererName(),
 
-                                color = if (isSel) Color(0xFF55FF55) else Color.White,
+                                color = if (isSel) Color(0xFFC58AFF) else Color.White,
 
                                 fontFamily = MinecraftFontFamily,
 
@@ -4928,7 +4928,7 @@ private fun VideoSettingsTab(
 
                                         .clip(RoundedCornerShape(3.dp))
 
-                                        .background(Color(0xFF2E6930))
+                                        .background(Color(0xFF593078))
 
                                         .padding(horizontal = 5.dp, vertical = 1.dp)
 
@@ -4938,7 +4938,7 @@ private fun VideoSettingsTab(
 
                                         text = "RECOMMENDED",
 
-                                        color = Color(0xFF55FF55),
+                                        color = Color(0xFFC58AFF),
 
                                         fontFamily = MinecraftFontFamily,
 
@@ -4988,7 +4988,7 @@ private fun VideoSettingsTab(
 
                         colors = RadioButtonDefaults.colors(
 
-                            selectedColor = Color(0xFF55FF55),
+                            selectedColor = Color(0xFFC58AFF),
 
                             unselectedColor = Color(0xFF666666)
 
@@ -5072,7 +5072,7 @@ private fun VideoSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -5100,7 +5100,7 @@ private fun VideoSettingsTab(
 
                 Text("Resolution Scaling", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold)
 
-                Text("${resolutionRatio.toInt()}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${resolutionRatio.toInt()}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -5120,9 +5120,9 @@ private fun VideoSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -5170,7 +5170,7 @@ private fun VideoSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -5214,7 +5214,7 @@ private fun VideoSettingsTab(
 
                     text = if (showAdvancedVideoOptions) "▼" else "▶",
 
-                    color = Color(0xFF55FF55),
+                    color = Color(0xFFC58AFF),
 
                     fontFamily = MinecraftFontFamily,
 
@@ -5312,7 +5312,7 @@ private fun VideoSettingsTab(
 
                                 unfocusedContainerColor = Color(0xFF242426),
 
-                                focusedBorderColor = Color(0xFF55FF55),
+                                focusedBorderColor = Color(0xFFC58AFF),
 
                                 unfocusedBorderColor = Color(0xFF383838),
 
@@ -5350,7 +5350,7 @@ private fun VideoSettingsTab(
 
                                 unfocusedContainerColor = Color(0xFF242426),
 
-                                focusedBorderColor = Color(0xFF55FF55),
+                                focusedBorderColor = Color(0xFFC58AFF),
 
                                 unfocusedBorderColor = Color(0xFF383838),
 
@@ -5404,7 +5404,7 @@ private fun VideoSettingsTab(
 
                             checkedThumbColor = Color.White,
 
-                            checkedTrackColor = Color(0xFF3C8527),
+                            checkedTrackColor = Color(0xFF8F50C5),
 
                             uncheckedThumbColor = Color(0xFF888888),
 
@@ -5484,7 +5484,7 @@ private fun VideoSettingsTab(
 
                                 .clip(RoundedCornerShape(3.dp))
 
-                                .background(Color(0xFF2E6930))
+                                .background(Color(0xFF593078))
 
                                 .clickable { importDriverLauncher.launch("*/*") }
 
@@ -5492,7 +5492,7 @@ private fun VideoSettingsTab(
 
                         ) {
 
-                            Text("+ IMPORT TURNIP", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontWeight = FontWeight.Bold, fontSize = 9.sp)
+                            Text("+ IMPORT TURNIP", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontWeight = FontWeight.Bold, fontSize = 9.sp)
 
                         }
 
@@ -5522,11 +5522,11 @@ private fun VideoSettingsTab(
 
                                 .clip(RoundedCornerShape(2.dp))
 
-                                .background(if (isDriverSel) Color(0xFF263820) else Color(0xFF242426))
+                                .background(if (isDriverSel) Color(0xFF352044) else Color(0xFF242426))
 
                                 .border(
 
-                                    BorderStroke(1.dp, if (isDriverSel) Color(0xFF55FF55) else Color(0xFF383838)),
+                                    BorderStroke(1.dp, if (isDriverSel) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                                     RoundedCornerShape(2.dp)
 
@@ -5554,7 +5554,7 @@ private fun VideoSettingsTab(
 
                                     text = driver.name.ifBlank { driver.id },
 
-                                    color = if (isDriverSel) Color(0xFF55FF55) else Color.White,
+                                    color = if (isDriverSel) Color(0xFFC58AFF) else Color.White,
 
                                     fontFamily = MinecraftFontFamily,
 
@@ -5592,7 +5592,7 @@ private fun VideoSettingsTab(
 
                                 colors = RadioButtonDefaults.colors(
 
-                                    selectedColor = Color(0xFF55FF55),
+                                    selectedColor = Color(0xFFC58AFF),
 
                                     unselectedColor = Color(0xFF666666)
 
@@ -5646,7 +5646,7 @@ private fun VideoSettingsTab(
 
                             checkedThumbColor = Color.White,
 
-                            checkedTrackColor = Color(0xFF3C8527),
+                            checkedTrackColor = Color(0xFF8F50C5),
 
                             uncheckedThumbColor = Color(0xFF888888),
 
@@ -5696,7 +5696,7 @@ private fun VideoSettingsTab(
 
                             checkedThumbColor = Color.White,
 
-                            checkedTrackColor = Color(0xFF3C8527),
+                            checkedTrackColor = Color(0xFF8F50C5),
 
                             uncheckedThumbColor = Color(0xFF888888),
 
@@ -5746,7 +5746,7 @@ private fun VideoSettingsTab(
 
                             checkedThumbColor = Color.White,
 
-                            checkedTrackColor = Color(0xFF3C8527),
+                            checkedTrackColor = Color(0xFF8F50C5),
 
                             uncheckedThumbColor = Color(0xFF888888),
 
@@ -5870,11 +5870,11 @@ private fun ControlsSettingsTab(
 
                         .clip(RoundedCornerShape(2.dp))
 
-                        .background(if (isSel) Color(0xFF3C8527) else Color(0xFF262628))
+                        .background(if (isSel) Color(0xFF8F50C5) else Color(0xFF262628))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isSel) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isSel) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(2.dp)
 
@@ -5930,7 +5930,7 @@ private fun ControlsSettingsTab(
 
                 Text("Virtual Mouse Sensitivity", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                Text("${cursorSensitivity.toInt()}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${cursorSensitivity.toInt()}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -5950,9 +5950,9 @@ private fun ControlsSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -5978,7 +5978,7 @@ private fun ControlsSettingsTab(
 
                 Text("Virtual Mouse Pointer Size", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                Text("${mouseSize} dp", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${mouseSize} dp", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -5998,9 +5998,9 @@ private fun ControlsSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -6048,7 +6048,7 @@ private fun ControlsSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -6098,7 +6098,7 @@ private fun ControlsSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -6148,7 +6148,7 @@ private fun ControlsSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -6198,7 +6198,7 @@ private fun ControlsSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -6226,7 +6226,7 @@ private fun ControlsSettingsTab(
 
                     Text("Gyroscope Sensitivity", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                    Text("${gyroscopeSensitivity.toInt()}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                    Text("${gyroscopeSensitivity.toInt()}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
                 }
 
@@ -6246,9 +6246,9 @@ private fun ControlsSettingsTab(
 
                     colors = SliderDefaults.colors(
 
-                        thumbColor = Color(0xFF55FF55),
+                        thumbColor = Color(0xFFC58AFF),
 
-                        activeTrackColor = Color(0xFF3C8527),
+                        activeTrackColor = Color(0xFF8F50C5),
 
                         inactiveTrackColor = Color(0xFF333333)
 
@@ -6328,7 +6328,7 @@ private fun LauncherSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -6424,7 +6424,7 @@ private fun LauncherSettingsTab(
 
                         .clip(RoundedCornerShape(3.dp))
 
-                        .background(Color(0xFF2E6930))
+                        .background(Color(0xFF593078))
 
                         .clickable { importFontLauncher.launch("*/*") }
 
@@ -6436,7 +6436,7 @@ private fun LauncherSettingsTab(
 
                         "+ BROWSE FONT",
 
-                        color = Color(0xFF55FF55),
+                        color = Color(0xFFC58AFF),
 
                         fontFamily = MinecraftFontFamily,
 
@@ -6488,11 +6488,11 @@ private fun LauncherSettingsTab(
 
                         .clip(RoundedCornerShape(2.dp))
 
-                        .background(if (isFontSel) Color(0xFF263820) else Color(0xFF242426))
+                        .background(if (isFontSel) Color(0xFF352044) else Color(0xFF242426))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isFontSel) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isFontSel) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(2.dp)
 
@@ -6528,7 +6528,7 @@ private fun LauncherSettingsTab(
 
                             text = name,
 
-                            color = if (isFontSel) Color(0xFF55FF55) else Color.White,
+                            color = if (isFontSel) Color(0xFFC58AFF) else Color.White,
 
                             fontFamily = MinecraftFontFamily,
 
@@ -6576,7 +6576,7 @@ private fun LauncherSettingsTab(
 
                         colors = RadioButtonDefaults.colors(
 
-                            selectedColor = Color(0xFF55FF55),
+                            selectedColor = Color(0xFFC58AFF),
 
                             unselectedColor = Color(0xFF666666)
 
@@ -6700,7 +6700,7 @@ private fun GamepadSettingsTab(
 
                     checkedThumbColor = Color.White,
 
-                    checkedTrackColor = Color(0xFF3C8527),
+                    checkedTrackColor = Color(0xFF8F50C5),
 
                     uncheckedThumbColor = Color(0xFF888888),
 
@@ -6738,11 +6738,11 @@ private fun GamepadSettingsTab(
 
                         .clip(RoundedCornerShape(2.dp))
 
-                        .background(if (isSel) Color(0xFF3C8527) else Color(0xFF262628))
+                        .background(if (isSel) Color(0xFF8F50C5) else Color(0xFF262628))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isSel) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isSel) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(2.dp)
 
@@ -6798,7 +6798,7 @@ private fun GamepadSettingsTab(
 
                 Text("Analog Stick Deadzone", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                Text("${gamepadDeadZone.toInt()}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${gamepadDeadZone.toInt()}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -6818,9 +6818,9 @@ private fun GamepadSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -6846,7 +6846,7 @@ private fun GamepadSettingsTab(
 
                 Text("Right Stick Camera Sensitivity", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                Text("${gamepadCameraSens.toInt()}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${gamepadCameraSens.toInt()}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -6866,9 +6866,9 @@ private fun GamepadSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -6892,7 +6892,7 @@ private fun GamepadSettingsTab(
 
                 Text("Menu Cursor Sensitivity", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                Text("${gamepadCursorSens.toInt()}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${gamepadCursorSens.toInt()}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -6912,9 +6912,9 @@ private fun GamepadSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -6942,7 +6942,7 @@ private fun GamepadSettingsTab(
 
                 text = "Profile: ${currentMapping?.name ?: "Default"}",
 
-                color = Color(0xFF55FF55),
+                color = Color(0xFFC58AFF),
 
                 fontFamily = MinecraftFontFamily,
 
@@ -7014,11 +7014,11 @@ private fun GamepadSettingsTab(
 
                     .clip(RoundedCornerShape(2.dp))
 
-                    .background(if (editGamepadKeyInGame) Color(0xFF3C8527) else Color(0xFF262628))
+                    .background(if (editGamepadKeyInGame) Color(0xFF8F50C5) else Color(0xFF262628))
 
                     .border(
 
-                        BorderStroke(1.dp, if (editGamepadKeyInGame) Color(0xFF55FF55) else Color(0xFF383838)),
+                        BorderStroke(1.dp, if (editGamepadKeyInGame) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                         RoundedCornerShape(2.dp)
 
@@ -7058,11 +7058,11 @@ private fun GamepadSettingsTab(
 
                     .clip(RoundedCornerShape(2.dp))
 
-                    .background(if (!editGamepadKeyInGame) Color(0xFF3C8527) else Color(0xFF262628))
+                    .background(if (!editGamepadKeyInGame) Color(0xFF8F50C5) else Color(0xFF262628))
 
                     .border(
 
-                        BorderStroke(1.dp, if (!editGamepadKeyInGame) Color(0xFF55FF55) else Color(0xFF383838)),
+                        BorderStroke(1.dp, if (!editGamepadKeyInGame) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                         RoundedCornerShape(2.dp)
 
@@ -7198,7 +7198,7 @@ private fun GamepadSettingsTab(
 
                             text = boundNames,
 
-                            color = if (boundCodes.isNotEmpty()) Color(0xFF55FF55) else Color(0xFF888888),
+                            color = if (boundCodes.isNotEmpty()) Color(0xFFC58AFF) else Color(0xFF888888),
 
                             fontFamily = MinecraftFontFamily,
 
@@ -7376,7 +7376,7 @@ private fun JavaSettingsTab(
 
                     .clip(RoundedCornerShape(3.dp))
 
-                    .background(Color(0xFF2E6930))
+                    .background(Color(0xFF593078))
 
                     .clickable { importJreLauncher.launch("*/*") }
 
@@ -7388,7 +7388,7 @@ private fun JavaSettingsTab(
 
                     "+ IMPORT JRE",
 
-                    color = Color(0xFF55FF55),
+                    color = Color(0xFFC58AFF),
 
                     fontFamily = MinecraftFontFamily,
 
@@ -7414,7 +7414,7 @@ private fun JavaSettingsTab(
 
                 text = "Unpacking and registering runtime archive...",
 
-                color = Color(0xFF55FF55),
+                color = Color(0xFFC58AFF),
 
                 fontFamily = MinecraftFontFamily,
 
@@ -7460,11 +7460,11 @@ private fun JavaSettingsTab(
 
                         .clip(RoundedCornerShape(2.dp))
 
-                        .background(if (isSelected) Color(0xFF263820) else Color(0xFF242426))
+                        .background(if (isSelected) Color(0xFF352044) else Color(0xFF242426))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isSelected) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isSelected) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(2.dp)
 
@@ -7494,7 +7494,7 @@ private fun JavaSettingsTab(
 
                             text = rt.name,
 
-                            color = if (isSelected) Color(0xFF55FF55) else Color.White,
+                            color = if (isSelected) Color(0xFFC58AFF) else Color.White,
 
                             fontFamily = MinecraftFontFamily,
 
@@ -7522,7 +7522,7 @@ private fun JavaSettingsTab(
 
                     if (isSelected) {
 
-                        Text("ACTIVE", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        Text("ACTIVE", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 10.sp, fontWeight = FontWeight.Bold)
 
                     }
 
@@ -7642,7 +7642,7 @@ private fun LayoutsSettingsTab(
 
                 Text("Virtual Controls Opacity", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
-                Text("${controlsOpacity}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${controlsOpacity}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
 
             }
 
@@ -7662,9 +7662,9 @@ private fun LayoutsSettingsTab(
 
                 colors = SliderDefaults.colors(
 
-                    thumbColor = Color(0xFF55FF55),
+                    thumbColor = Color(0xFFC58AFF),
 
-                    activeTrackColor = Color(0xFF3C8527),
+                    activeTrackColor = Color(0xFF8F50C5),
 
                     inactiveTrackColor = Color(0xFF333333)
 
@@ -7686,7 +7686,7 @@ private fun LayoutsSettingsTab(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("Overall Controls Button Size", color = Color.White, fontFamily = MinecraftFontFamily, fontSize = 12.sp)
-                Text("${controlsButtonScale}%", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
+                Text("${controlsButtonScale}%", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 12.sp)
             }
 
             Slider(
@@ -7697,8 +7697,8 @@ private fun LayoutsSettingsTab(
                 },
                 valueRange = 50f..200f,
                 colors = SliderDefaults.colors(
-                    thumbColor = Color(0xFF55FF55),
-                    activeTrackColor = Color(0xFF3C8527),
+                    thumbColor = Color(0xFFC58AFF),
+                    activeTrackColor = Color(0xFF8F50C5),
                     inactiveTrackColor = Color(0xFF333333)
                 )
             )
@@ -7842,11 +7842,11 @@ private fun LayoutsSettingsTab(
 
                         .clip(RoundedCornerShape(3.dp))
 
-                        .background(if (isSelected) Color(0xFF263820) else Color(0xFF242426))
+                        .background(if (isSelected) Color(0xFF352044) else Color(0xFF242426))
 
                         .border(
 
-                            BorderStroke(1.dp, if (isSelected) Color(0xFF55FF55) else Color(0xFF383838)),
+                            BorderStroke(1.dp, if (isSelected) Color(0xFFC58AFF) else Color(0xFF383838)),
 
                             RoundedCornerShape(3.dp)
 
@@ -7876,7 +7876,7 @@ private fun LayoutsSettingsTab(
 
                             text = layoutName,
 
-                            color = if (isSelected) Color(0xFF55FF55) else Color.White,
+                            color = if (isSelected) Color(0xFFC58AFF) else Color.White,
 
                             fontFamily = MinecraftFontFamily,
 
@@ -7912,7 +7912,7 @@ private fun LayoutsSettingsTab(
 
                         if (isSelected) {
 
-                            Text("ACTIVE", color = Color(0xFF55FF55), fontFamily = MinecraftFontFamily, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                            Text("ACTIVE", color = Color(0xFFC58AFF), fontFamily = MinecraftFontFamily, fontSize = 10.sp, fontWeight = FontWeight.Bold)
 
                         }
 
@@ -8032,7 +8032,7 @@ private fun AboutSettingsTab() {
 
             text = "v1.1.0 (Release)",
 
-            color = Color(0xFF55FF55),
+            color = Color(0xFFC58AFF),
 
             fontFamily = MinecraftFontFamily,
 
@@ -8124,7 +8124,7 @@ private fun AboutSettingsTab() {
 
                 .background(Color(0xFF161618))
 
-                .border(BorderStroke(1.dp, Color(0xFF223322)), RoundedCornerShape(3.dp))
+                .border(BorderStroke(1.dp, Color(0xFF382344)), RoundedCornerShape(3.dp))
 
                 .padding(12.dp)
 
@@ -8136,7 +8136,7 @@ private fun AboutSettingsTab() {
 
                     text = "WHAT'S NEW IN v1.1.0",
 
-                    color = Color(0xFF55FF55),
+                    color = Color(0xFFC58AFF),
 
                     fontFamily = MinecraftFontFamily,
 
@@ -8204,7 +8204,7 @@ private fun AboutSettingsTab() {
 
                     ) {
 
-                        Text("•", color = Color(0xFF55FF55), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                        Text("•", color = Color(0xFFC58AFF), fontSize = 11.sp, fontWeight = FontWeight.Bold)
 
                         Text(item, color = Color(0xFFCCCCCC), fontFamily = MinecraftFontFamily, fontSize = 10.sp, lineHeight = 13.5.sp)
 

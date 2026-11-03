@@ -1,0 +1,76 @@
+name: Ender Launcher Android build
+
+on:
+  push:
+    branches: [ "main", "feature/ender-branding" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+
+      - name: Cache Android NDK
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.ANDROID_SDK_ROOT }}/ndk/25.2.9519653
+          key: android-ndk-25.2.9519653
+
+      - name: Install Android NDK and SDK platform
+        run: |
+          sdkmanager --channel=3 "ndk;25.2.9519653" "platforms;android-37.0"
+          # Android Gradle Plugin looks for android-37, while SDK Manager installs 37.0.
+          if [ ! -e "$ANDROID_SDK_ROOT/platforms/android-37" ]; then
+            ln -s android-37.0 "$ANDROID_SDK_ROOT/platforms/android-37"
+          fi
+
+      - name: Build arm64 debug APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :CubiqLauncher:assembleDebug -PprojectArch=arm64 --build-cache --parallel --stacktrace
+
+      - name: Package APK
+        run: |
+          mkdir -p dist
+          APK=$(find CubiqLauncher/build/outputs/apk -type f -name '*.apk' | head -n 1)
+          test -n "$APK"
+          cp "$APK" dist/Ender-Launcher-arm64.apk
+          cd dist
+          zip -9 Ender-Launcher-arm64.zip Ender-Launcher-arm64.apk
+          echo "APK_BYTES=$(stat -c%s Ender-Launcher-arm64.apk)" >> "$GITHUB_ENV"
+          echo "ZIP_BYTES=$(stat -c%s Ender-Launcher-arm64.zip)" >> "$GITHUB_ENV"
+
+      - name: Report package size
+        run: |
+          echo "APK size: $((APK_BYTES / 1024 / 1024)) MiB"
+          echo "ZIP size: $((ZIP_BYTES / 1024 / 1024)) MiB"
+          if [ "$ZIP_BYTES" -gt 26214400 ]; then
+            echo "::warning::The ZIP is larger than the requested 25 MB limit."
+          fi
+
+      - name: Upload APK ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ender-Launcher-arm64
+          path: dist/Ender-Launcher-arm64.zip
+          if-no-files-found: error
+          retention-days: 14

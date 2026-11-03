@@ -1,5 +1,5 @@
 /*
- * Cubiq Launcher
+ * Ender Launcher
  * Minecraft Java Edition PC Mobile Replica Launcher UI
  */
 
@@ -313,9 +313,62 @@ fun LauncherScreen(
                     .fillMaxSize()
                     .background(Color(0xFF141414))
             ) {
+                // Original End-inspired scene drawn in Compose, not a pasted screenshot.
+                EnderDimensionBackdrop()
+
                 Column(
                     modifier = Modifier.fillMaxSize()
                 ) {
+                    // Permanent Ender brand bar: the launcher identity is visible on the main screen.
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFF100B18))
+                            .padding(horizontal = 14.dp, vertical = 7.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_ender_launcher),
+                            contentDescription = "Ender Launcher",
+                            modifier = Modifier.size(30.dp)
+                        )
+                        Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
+                            Text(
+                                text = "ENDER LAUNCHER",
+                                color = Color(0xFFE0B5FF),
+                                fontFamily = MinecraftFontFamily,
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 13.sp,
+                                letterSpacing = 1.4.sp
+                            )
+                            Text(
+                                text = "JAVA EDITION • MOBILE",
+                                color = Color(0xFF9B82AA),
+                                fontFamily = MinecraftFontFamily,
+                                fontSize = 8.sp,
+                                letterSpacing = 1.sp
+                            )
+                        }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(20.dp))
+                                .background(Color(0xFF29163C))
+                                .border(BorderStroke(1.dp, Color(0xFF6F35A5)), RoundedCornerShape(20.dp))
+                                .padding(horizontal = 9.dp, vertical = 4.dp)
+                        ) {
+                            Text(
+                                text = "ENDER",
+                                color = Color(0xFFE0B5FF),
+                                fontFamily = MinecraftFontFamily,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 9.sp,
+                                letterSpacing = 1.sp
+                            )
+                        }
+                    }
+
                     // Top Account Header with Interactive Account Switcher Dropdown and Files / Multiplayer Quick Actions
                     TopAccountHeader(
                         account = account,
@@ -545,7 +598,7 @@ fun LauncherScreen(
                                                                 text = {
                                                                     Text(
                                                                         text = "+ Manage Installations",
-                                                                        color = Color(0xFF55FF55),
+                                                                        color = Color(0xFFB56CFF),
                                                                         fontFamily = MinecraftFontFamily,
                                                                         fontWeight = FontWeight.Bold
                                                                     )
@@ -646,7 +699,7 @@ fun LauncherScreen(
                                                             text = {
                                                                 Text(
                                                                     text = "+ Manage Installations",
-                                                                    color = Color(0xFF55FF55),
+                                                                    color = Color(0xFFB56CFF),
                                                                     fontFamily = MinecraftFontFamily,
                                                                     fontWeight = FontWeight.Bold
                                                                 )
@@ -748,14 +801,28 @@ private fun MinecraftLaunchLoadingOverlay() {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(24.dp)
         ) {
-            // Authentic 3D Minecraft Java Edition Logo
+            // Ender Launcher identity
             Image(
-                painter = painterResource(R.drawable.img_mc_java_logo),
-                contentDescription = "Minecraft Java Edition",
-                modifier = Modifier
-                    .fillMaxWidth(0.85f)
-                    .height(68.dp),
+                painter = painterResource(R.drawable.ic_ender_launcher),
+                contentDescription = "Ender Launcher Enderman icon",
+                modifier = Modifier.size(76.dp),
                 contentScale = ContentScale.Fit
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "ENDER LAUNCHER",
+                color = Color(0xFFE0B5FF),
+                fontFamily = MinecraftFontFamily,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 22.sp,
+                letterSpacing = 2.sp
+            )
+            Text(
+                text = "MINECRAFT JAVA • MOBILE",
+                color = Color(0xFF9B82AA),
+                fontFamily = MinecraftFontFamily,
+                fontSize = 10.sp,
+                letterSpacing = 1.sp
             )
 
             Spacer(modifier = Modifier.height(42.dp))
@@ -778,7 +845,7 @@ private fun MinecraftLaunchLoadingOverlay() {
 
             Spacer(modifier = Modifier.height(36.dp))
 
-            // Minecraft Green Loading Bar
+            // Ender violet loading bar
             Box(
                 modifier = Modifier
                     .width(220.dp)
@@ -791,14 +858,14 @@ private fun MinecraftLaunchLoadingOverlay() {
                     modifier = Modifier
                         .fillMaxHeight()
                         .fillMaxWidth(pulseAlpha)
-                        .background(Color(0xFF55FF55))
+                        .background(Color(0xFFB56CFF))
                 )
             }
 
             Spacer(modifier = Modifier.height(14.dp))
 
             Text(
-                text = "LOADING CUBIQ...",
+                text = "LOADING ENDER...",
                 color = Color(0xFFAAAAAA),
                 fontFamily = MinecraftFontFamily,
                 fontWeight = FontWeight.Bold,
@@ -811,7 +878,7 @@ private fun MinecraftLaunchLoadingOverlay() {
 
 /**
  * Top Account Header Bar:
- * Displays Player Head with cyan/blue border, Player Name with chevron arrow, and (Microsoft Account)
+ * Displays Player Head with Ender violet border, Player Name with chevron arrow, and (Microsoft Account)
  */
 /**
  * Top Account Header Bar:
@@ -856,13 +923,13 @@ private fun TopAccountHeader(
                     .padding(end = 6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Player Head Avatar with vibrant blue rounded square border
+                // Player avatar with Ender violet accent
                 Box(
                     modifier = Modifier
                         .size(38.dp)
                         .clip(RoundedCornerShape(6.dp))
-                        .border(BorderStroke(2.dp, Color(0xFF1E88E5)), RoundedCornerShape(6.dp))
-                        .background(Color(0xFF222222)),
+                        .border(BorderStroke(2.dp, Color(0xFFB56CFF)), RoundedCornerShape(6.dp))
+                        .background(Color(0xFF21152B)),
                     contentAlignment = Alignment.Center
                 ) {
                     val skinFile = account?.getSkinFile()
@@ -1011,7 +1078,7 @@ private fun TopAccountHeader(
                     Icon(
                         painter = painterResource(R.drawable.ic_person_outlined),
                         contentDescription = null,
-                        tint = Color(0xFF55FF55),
+                        tint = Color(0xFFB56CFF),
                         modifier = Modifier.size(16.dp)
                     )
                     Text(
@@ -1080,7 +1147,7 @@ private fun TopAccountHeader(
                                 .border(
                                     BorderStroke(
                                         1.dp,
-                                        if (isCurrent) Color(0xFF55FF55) else Color(0xFF333336)
+                                        if (isCurrent) Color(0xFFB56CFF) else Color(0xFF333336)
                                     ),
                                     RoundedCornerShape(3.dp)
                                 )
@@ -1096,7 +1163,7 @@ private fun TopAccountHeader(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     text = acc.username,
-                                    color = if (isCurrent) Color(0xFF55FF55) else Color.White,
+                                    color = if (isCurrent) Color(0xFFB56CFF) else Color.White,
                                     fontFamily = MinecraftFontFamily,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 12.sp,
@@ -1118,7 +1185,7 @@ private fun TopAccountHeader(
                                 ) {
                                     Text(
                                         text = "ACTIVE",
-                                        color = Color(0xFF55FF55),
+                                        color = Color(0xFFB56CFF),
                                         fontFamily = MinecraftFontFamily,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 8.5.sp
@@ -1385,7 +1452,7 @@ private fun TopAccountHeader(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedContainerColor = Color(0xFF242426),
                             unfocusedContainerColor = Color(0xFF242426),
-                            focusedBorderColor = Color(0xFF55FF55),
+                            focusedBorderColor = Color(0xFFB56CFF),
                             unfocusedBorderColor = Color(0xFF383838),
                             focusedTextColor = Color.White,
                             unfocusedTextColor = Color.White
@@ -1522,7 +1589,7 @@ private fun HeroMinecraftCard(
 
     MinecraftPixelBorderContainer(
         modifier = modifier,
-        borderColor = Color(0xFF3C8527)
+        borderColor = Color(0xFF6F35A5)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             // Background Artwork (Single centered Wilderness Bound banner from official folder)
@@ -1700,7 +1767,7 @@ private fun InstalledVersionsSection(
             )
             Text(
                 text = "+ ADD NEW",
-                color = Color(0xFF55FF55),
+                color = Color(0xFFB56CFF),
                 fontFamily = MinecraftFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 12.sp,
@@ -1771,12 +1838,12 @@ private fun InstalledVersionsSection(
                             com.movtery.zalithlauncher.ui.sound.MinecraftSoundHelper.playClickSound()
                             onSelectVersion(ver)
                         },
-                    borderColor = if (isSelected) Color(0xFF55FF55) else Color(0xFF333333)
+                    borderColor = if (isSelected) Color(0xFFB56CFF) else Color(0xFF333333)
                 ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(if (isSelected) Color(0xFF1E281C) else Color(0xFF1A1A1C))
+                            .background(if (isSelected) Color(0xFF241B2E) else Color(0xFF1A1A1C))
                             .padding(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -1786,7 +1853,7 @@ private fun InstalledVersionsSection(
                                 .size(56.dp)
                                 .clip(RoundedCornerShape(3.dp))
                                 .background(Color(0xFF222224))
-                                .border(BorderStroke(1.dp, if (isSelected) Color(0xFF55FF55) else Color(0xFF383838)), RoundedCornerShape(3.dp)),
+                                .border(BorderStroke(1.dp, if (isSelected) Color(0xFFB56CFF) else Color(0xFF383838)), RoundedCornerShape(3.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             if (hasCustomIcon) {
@@ -1836,7 +1903,7 @@ private fun InstalledVersionsSection(
                             if (isSelected) {
                                 Text(
                                     text = "● ACTIVE",
-                                    color = Color(0xFF55FF55),
+                                    color = Color(0xFFB56CFF),
                                     fontFamily = MinecraftFontFamily,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 9.sp
@@ -1870,7 +1937,7 @@ private fun InstalledVersionsSection(
 @Composable
 private fun MinecraftPixelBorderContainer(
     modifier: Modifier = Modifier,
-    borderColor: Color = Color(0xFF3C8527),
+    borderColor: Color = Color(0xFF6F35A5),
     content: @Composable () -> Unit
 ) {
     Box(
@@ -2027,7 +2094,7 @@ private fun NewsSecurityDialog(
                 Text(
                     text = "Important Message regarding building and running Java Edition:\n\n" +
                             "Mojang Studios and the Minecraft security team have released critical security advisories regarding network packet processing and external asset loaders.\n\n" +
-                            "Cubiq includes patched native libraries and secure JVM arguments to keep your game, world data, and multiplayer sessions safe.",
+                            "Ender includes patched native libraries and secure JVM arguments to keep your game, world data, and multiplayer sessions safe.",
                     color = Color(0xFFCCCCCC),
                     fontFamily = MinecraftFontFamily,
                     fontSize = 12.sp,
@@ -2122,7 +2189,7 @@ fun CompactBackgroundDownloadBar(
             Icon(
                 painter = painterResource(id = R.drawable.ic_download),
                 contentDescription = null,
-                tint = Color(0xFF55FF55).copy(alpha = alpha),
+                tint = Color(0xFFB56CFF).copy(alpha = alpha),
                 modifier = Modifier.size(20.dp)
             )
 
@@ -2183,7 +2250,7 @@ fun CompactBackgroundDownloadBar(
                     if (spd > 0L) {
                         Text(
                             text = "${formatFileSize(spd)}/s",
-                            color = Color(0xFF55FF55),
+                            color = Color(0xFFB56CFF),
                             fontFamily = MinecraftFontFamily,
                             fontSize = 10.sp,
                             softWrap = false,
@@ -2206,14 +2273,14 @@ fun CompactBackgroundDownloadBar(
                             modifier = Modifier
                                 .fillMaxWidth(progressFloat)
                                 .fillMaxHeight()
-                                .background(Color(0xFF55FF55))
+                                .background(Color(0xFFB56CFF))
                         )
                     } else {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth(0.35f)
                                 .fillMaxHeight()
-                                .background(Color(0xFF3C8527).copy(alpha = alpha))
+                                .background(Color(0xFF6F35A5).copy(alpha = alpha))
                         )
                     }
                 }

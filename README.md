@@ -1,22 +1,22 @@
 <div align="center">
 
-# 🟩 Cubiq Launcher
+# 🟩 Ender Launcher
 ### The Premier Minecraft: Java Edition Launcher for Android
 
-[![GitHub Release](https://img.shields.io/github/v/release/VivxKumar07/Cubiq-Launcher?style=for-the-badge&color=55FF55&logo=github)](https://github.com/VivxKumar07/Cubiq-Launcher/releases/latest)
-[![Platform](https://img.shields.io/badge/Platform-Android_8.0+-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/VivxKumar07/Cubiq-Launcher)
-[![Minecraft](https://img.shields.io/badge/Minecraft-Java_Edition_1.7--1.21+-3C8527?style=for-the-badge&logo=minecraft&logoColor=white)](https://www.minecraft.net)
+[![GitHub Release](https://img.shields.io/github/v/release/tarachukalucas-cyber/Ender-laucher?style=for-the-badge&color=B56CFF&logo=github)](https://github.com/tarachukalucas-cyber/Ender-laucher/releases/latest)
+[![Platform](https://img.shields.io/badge/Platform-Android_8.0+-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/tarachukalucas-cyber/Ender-laucher)
+[![Minecraft](https://img.shields.io/badge/Minecraft-Java_Edition_1.7--1.21+-6F35A5?style=for-the-badge&logo=minecraft&logoColor=white)](https://www.minecraft.net)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)](LICENSE)
 
 <br/>
 
-**Official Website of Cubiq Launcher :** https://cubiq.antideploy.app/
+**Official Website of Ender Launcher :** https://github.com/tarachukalucas-cyber/Ender-laucher
 
-**Cubiq Launcher** is a modern, high-performance, open-source **Minecraft: Java Edition launcher for Android** designed from the ground up with an authentic, pixel-accurate PC Minecraft Launcher interface built natively in **Jetpack Compose**.
+**Ender Launcher** is a modern, high-performance, open-source **Minecraft: Java Edition launcher for Android** designed from the ground up with an authentic, pixel-accurate PC Minecraft Launcher interface built natively in **Jetpack Compose**.
 
 Experience seamless desktop Minecraft Java on mobile with hardware-accelerated Vulkan & OpenGL ES renderers, customizable touch controls, physical gamepad support, peer-to-peer LAN multiplayer, and one-click modding.
 
-[📥 **Download Latest APK**](https://github.com/VivxKumar07/Cubiq-Launcher/releases/latest) • [✨ **Features**](#-features) • [📖 **Quick Start**](#-quick-start-guide) • [❓ **FAQ**](#-frequently-asked-questions-faq) • [🛠️ **Build from Source**](#-building-from-source)
+[📥 **Download Latest APK**](https://github.com/tarachukalucas-cyber/Ender-laucher/releases/latest) • [✨ **Features**](#-features) • [📖 **Quick Start**](#-quick-start-guide) • [❓ **FAQ**](#-frequently-asked-questions-faq) • [🛠️ **Build from Source**](#-building-from-source)
 
 </div>
 
@@ -75,7 +75,7 @@ Experience seamless desktop Minecraft Java on mobile with hardware-accelerated V
 
 ## 🚀 Quick Start Guide
 
-1. **Download the APK**: Grab the latest release APK from the [Releases Page](https://github.com/VivxKumar07/Cubiq-Launcher/releases/latest).
+1. **Download the APK**: Grab the latest release APK from the [Releases Page](https://github.com/tarachukalucas-cyber/Ender-laucher/releases/latest).
 2. **Install on Device**: Open the `.apk` on your Android device and allow *"Install from Unknown Sources"* if prompted.
 3. **Add an Account**:
    - Tap the top-left account card to sign in with **Microsoft** (for official multiplayer servers) or create an **Offline Account** for local play.
@@ -89,13 +89,13 @@ Experience seamless desktop Minecraft Java on mobile with hardware-accelerated V
 ## ❓ Frequently Asked Questions (FAQ)
 
 <details>
-<summary><b>1. Is Cubiq Launcher free and safe to use?</b></summary>
-Yes. Cubiq Launcher is completely free, 100% open-source under the GNU GPL-3.0 license, and contains no ads, telemetry trackers, or malware. You can verify the entire codebase and build it yourself from source.
+<summary><b>1. Is Ender Launcher free and safe to use?</b></summary>
+Yes. Ender Launcher is completely free, 100% open-source under the GNU GPL-3.0 license, and contains no ads, telemetry trackers, or malware. You can verify the entire codebase and build it yourself from source.
 </details>
 
 <details>
-<summary><b>2. How does Cubiq Launcher compare to PojavLauncher?</b></summary>
-Cubiq Launcher is built from the ground up with a native Jetpack Compose UI replicating the authentic Minecraft PC Launcher interface. It features modernized renderer switching (Krypton, Kopper Zink), integrated Modrinth/CurseForge downloaders, built-in Terracotta P2P LAN multiplayer, and customizable touch controls.
+<summary><b>2. How does Ender Launcher compare to PojavLauncher?</b></summary>
+Ender Launcher is built from the ground up with a native Jetpack Compose UI replicating the authentic Minecraft PC Launcher interface. It features modernized renderer switching (Krypton, Kopper Zink), integrated Modrinth/CurseForge downloaders, built-in Terracotta P2P LAN multiplayer, and customizable touch controls.
 </details>
 
 <details>
@@ -110,7 +110,7 @@ Yes! Because Cubiq runs genuine Minecraft: Java Edition bytecode, you can connec
 
 <details>
 <summary><b>5. Can I use shaders and resource packs?</b></summary>
-Yes. By installing Fabric with Iris/Sodium, or Forge with Embeddium/Oculus, you can load compatible shaderpacks and high-resolution resource packs directly from the in-game Video Settings or Cubiq's Download Hub.
+Yes. By installing Fabric with Iris/Sodium, or Forge with Embeddium/Oculus, you can load compatible shaderpacks and high-resolution resource packs directly from the in-game Video Settings or Ender's Download Hub.
 </details>
 
 ---
@@ -127,8 +127,8 @@ Yes. By installing Fabric with Iris/Sodium, or Forge with Embeddium/Oculus, you 
 
 ```bash
 # Clone repository with submodules
-git clone --recursive https://github.com/VivxKumar07/Cubiq-Launcher.git
-cd Cubiq-Launcher
+git clone --recursive https://github.com/tarachukalucas-cyber/Ender-laucher.git
+cd Ender-laucher
 
 # Compile Debug APK
 ./gradlew CubiqLauncher:assembleDebug
@@ -141,7 +141,7 @@ cd Cubiq-Launcher
 ```
 
 Outputs will be saved in:
-- `CubiqLauncher/build/outputs/apk/debug/Cubiq-Debug-1.0.0.apk`
+- `CubiqLauncher/build/outputs/apk/debug/Ender-Debug-1.0.0.apk`
 
 ---
 
@@ -156,9 +156,9 @@ Contributions, bug reports, and pull requests are warmly welcomed! Please read o
 This project is licensed under the **[GNU General Public License v3.0 (GPL-3.0)](LICENSE)**.
 
 ### Acknowledgements & Upstream Projects
-Cubiq Launcher stands on the shoulders of giants in the Android Minecraft Java emulation community:
+Ender Launcher stands on the shoulders of giants in the Android Minecraft Java emulation community:
 - **[Zalith Launcher 2](https://github.com/MovTery/ZalithLauncher2)**: Foundation architecture, core process isolation, and runtime bridges.
 - **[PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher)**: Trailblazing mobile Java runtime execution, SDL display integration, and input bridging.
 - **[LWJGL](https://www.lwjgl.org/)**: Lightweight Java Game Library bridging on Android.
 
-*Minecraft is a registered trademark of Mojang Synergies AB. Cubiq Launcher is an independent open-source project and is not affiliated with, endorsed by, or associated with Mojang Studios or Microsoft.*
+*Minecraft is a registered trademark of Mojang Synergies AB. Ender Launcher is an independent open-source project and is not affiliated with, endorsed by, or associated with Mojang Studios or Microsoft.*

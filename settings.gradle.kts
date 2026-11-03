@@ -24,7 +24,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CubiqLauncher"
+rootProject.name = "EnderLauncher"
 include(":CubiqLauncher")
 include(":LWJGL")
 include(":LWJGL:patches")
