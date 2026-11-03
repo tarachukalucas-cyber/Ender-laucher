@@ -748,14 +748,28 @@ private fun MinecraftLaunchLoadingOverlay() {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(24.dp)
         ) {
-            // Authentic 3D Minecraft Java Edition Logo
+            // Ender Launcher identity
             Image(
-                painter = painterResource(R.drawable.img_mc_java_logo),
-                contentDescription = "Minecraft Java Edition",
-                modifier = Modifier
-                    .fillMaxWidth(0.85f)
-                    .height(68.dp),
+                painter = painterResource(R.drawable.ic_ender_launcher),
+                contentDescription = "Ender Launcher Enderman icon",
+                modifier = Modifier.size(76.dp),
                 contentScale = ContentScale.Fit
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "ENDER LAUNCHER",
+                color = Color(0xFFE0B5FF),
+                fontFamily = MinecraftFontFamily,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 22.sp,
+                letterSpacing = 2.sp
+            )
+            Text(
+                text = "MINECRAFT JAVA • MOBILE",
+                color = Color(0xFF9B82AA),
+                fontFamily = MinecraftFontFamily,
+                fontSize = 10.sp,
+                letterSpacing = 1.sp
             )
 
             Spacer(modifier = Modifier.height(42.dp))
@@ -778,7 +792,7 @@ private fun MinecraftLaunchLoadingOverlay() {
 
             Spacer(modifier = Modifier.height(36.dp))
 
-            // Minecraft Green Loading Bar
+            // Ender violet loading bar
             Box(
                 modifier = Modifier
                     .width(220.dp)
@@ -856,13 +870,13 @@ private fun TopAccountHeader(
                     .padding(end = 6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Player Head Avatar with vibrant blue rounded square border
+                // Player avatar with Ender violet accent
                 Box(
                     modifier = Modifier
                         .size(38.dp)
                         .clip(RoundedCornerShape(6.dp))
-                        .border(BorderStroke(2.dp, Color(0xFF1E88E5)), RoundedCornerShape(6.dp))
-                        .background(Color(0xFF222222)),
+                        .border(BorderStroke(2.dp, Color(0xFFB56CFF)), RoundedCornerShape(6.dp))
+                        .background(Color(0xFF21152B)),
                     contentAlignment = Alignment.Center
                 ) {
                     val skinFile = account?.getSkinFile()
