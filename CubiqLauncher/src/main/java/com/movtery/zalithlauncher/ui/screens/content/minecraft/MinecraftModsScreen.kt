@@ -270,7 +270,7 @@ fun MinecraftModsScreen(
                                 Icon(
                                     painter = painterResource(item.iconRes),
                                     contentDescription = item.title,
-                                    tint = Color(0xFF55FF55),
+                                    tint = Color(0xFFC99AFF),
                                     modifier = Modifier.size(24.dp)
                                 )
                             }
@@ -297,7 +297,7 @@ fun MinecraftModsScreen(
                                     ) {
                                         Text(
                                             text = item.badge,
-                                            color = Color(0xFF55FF55),
+                                            color = Color(0xFFC99AFF),
                                             fontFamily = MinecraftFontFamily,
                                             fontSize = 9.sp,
                                             fontWeight = FontWeight.Bold
