@@ -15,7 +15,7 @@ plugins {
 
 val zalithPackageName = "com.movtery.zalithlauncher"
 val launcherAPPName = project.findProperty("launcher_app_name") as? String ?: "Ender Launcher"
-val launcherName = project.findProperty("launcher_name") as? String ?: "Ender"
+val launcherName = project.findProperty("launcher_name") as? String ?: "Ender Launcher"
 val launcherShortName = project.findProperty("launcher_short_name") as? String ?: "Ender"
 val launcherUrl = project.findProperty("url_home") as? String ?: "https://github.com/tarachukalucas-cyber/Ender-laucher"
 
