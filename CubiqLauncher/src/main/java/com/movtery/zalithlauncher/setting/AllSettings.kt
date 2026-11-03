@@ -366,13 +366,13 @@ object AllSettings : SettingsRegistry() {
      */
     val launcherColorTheme = enumSetting(
         "launcherColorTheme",
-        ColorThemeType.VERDANTFIELD
+        ColorThemeType.CUSTOM
     )
 
     /**
      * 自定义颜色主题色
      */
-    val launcherCustomColor = intSetting("launcherCustomColor", Color.Blue.toArgb())
+    val launcherCustomColor = intSetting("launcherCustomColor", Color(0xFF9B59FF).toArgb())
 
     /**
      * 自定义颜色配色风格
