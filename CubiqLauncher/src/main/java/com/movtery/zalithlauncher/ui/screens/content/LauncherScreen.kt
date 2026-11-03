@@ -316,6 +316,56 @@ fun LauncherScreen(
                 Column(
                     modifier = Modifier.fillMaxSize()
                 ) {
+                    // Permanent Ender brand bar: the launcher identity is visible on the main screen.
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFF100B18))
+                            .padding(horizontal = 14.dp, vertical = 7.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_ender_launcher),
+                            contentDescription = "Ender Launcher",
+                            modifier = Modifier.size(30.dp)
+                        )
+                        Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
+                            Text(
+                                text = "ENDER LAUNCHER",
+                                color = Color(0xFFE0B5FF),
+                                fontFamily = MinecraftFontFamily,
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 13.sp,
+                                letterSpacing = 1.4.sp
+                            )
+                            Text(
+                                text = "JAVA EDITION • MOBILE",
+                                color = Color(0xFF9B82AA),
+                                fontFamily = MinecraftFontFamily,
+                                fontSize = 8.sp,
+                                letterSpacing = 1.sp
+                            )
+                        }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(20.dp))
+                                .background(Color(0xFF29163C))
+                                .border(BorderStroke(1.dp, Color(0xFF6F35A5)), RoundedCornerShape(20.dp))
+                                .padding(horizontal = 9.dp, vertical = 4.dp)
+                        ) {
+                            Text(
+                                text = "ENDER",
+                                color = Color(0xFFE0B5FF),
+                                fontFamily = MinecraftFontFamily,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 9.sp,
+                                letterSpacing = 1.sp
+                            )
+                        }
+                    }
+
                     // Top Account Header with Interactive Account Switcher Dropdown and Files / Multiplayer Quick Actions
                     TopAccountHeader(
                         account = account,
