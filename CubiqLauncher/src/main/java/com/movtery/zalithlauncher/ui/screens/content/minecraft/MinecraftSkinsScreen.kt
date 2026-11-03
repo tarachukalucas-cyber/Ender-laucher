@@ -1,5 +1,5 @@
 /*
- * Cubiq Launcher
+ * Ender Launcher
  * Minecraft PC Launcher Skins Screen (Centered Full-Body Player & Skin + Cape Wardrobe)
  */
 
@@ -71,6 +71,64 @@ import org.apache.commons.io.FileUtils
 import java.io.File
 import java.io.FileOutputStream
 
+/**
+ * Imports a Minecraft wardrobe texture without replacing the current file until
+ * the PNG has been decoded, its dimensions checked, and the copy completed.
+ */
+private fun importWardrobePng(
+    context: android.content.Context,
+    uri: Uri,
+    destination: File,
+    acceptedDimensions: Set<Pair<Int, Int>>
+) {
+    val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+    context.contentResolver.openInputStream(uri)?.use { stream ->
+        BitmapFactory.decodeStream(stream, null, options)
+    } ?: throw IllegalArgumentException("Could not open the selected image.")
+
+    if (options.outMimeType != "image/png") {
+        throw IllegalArgumentException("Select a valid PNG image.")
+    }
+    if ((options.outWidth to options.outHeight) !in acceptedDimensions) {
+        val allowed = acceptedDimensions.joinToString(" or ") { "${it.first}x${it.second}" }
+        throw IllegalArgumentException("Invalid texture size. Use $allowed pixels.")
+    }
+
+    val parent = destination.parentFile ?: throw IllegalStateException("Invalid wardrobe folder.")
+    if (!parent.exists() && !parent.mkdirs()) {
+        throw IllegalStateException("Could not create the wardrobe folder.")
+    }
+
+    val temporary = File(parent, "${destination.name}.importing")
+    try {
+        context.contentResolver.openInputStream(uri)?.use { input ->
+            FileOutputStream(temporary).use { output -> input.copyTo(output) }
+        } ?: throw IllegalArgumentException("Could not read the selected image.")
+
+        if (temporary.length() <= 0L || temporary.length() > 4L * 1024L * 1024L) {
+            throw IllegalArgumentException("The PNG must be smaller than 4 MB.")
+        }
+
+        // Confirm the copied file is still a decodable PNG before replacing the active texture.
+        val copiedOptions = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeFile(temporary.absolutePath, copiedOptions)
+        if (copiedOptions.outMimeType != "image/png" ||
+            (copiedOptions.outWidth to copiedOptions.outHeight) !in acceptedDimensions
+        ) {
+            throw IllegalArgumentException("The selected PNG is not a valid Minecraft texture.")
+        }
+
+        java.nio.file.Files.move(
+            temporary.toPath(),
+            destination.toPath(),
+            java.nio.file.StandardCopyOption.REPLACE_EXISTING,
+            java.nio.file.StandardCopyOption.ATOMIC_MOVE
+        )
+    } finally {
+        if (temporary.exists()) temporary.delete()
+    }
+}
+
 data class CapePreset(
     val id: String,
     val name: String,
@@ -138,13 +196,13 @@ fun MinecraftSkinsScreen(
                     val currentAcc = AccountsManager.currentAccountFlow.value
                     if (currentAcc != null) {
                         val skinDir = PathManager.DIR_ACCOUNT_SKIN
-                        if (!skinDir.exists()) skinDir.mkdirs()
                         val destFile = File(skinDir, "${currentAcc.uniqueUUID}.png")
-                        context.contentResolver.openInputStream(uri)?.use { input ->
-                            FileOutputStream(destFile).use { output ->
-                                input.copyTo(output)
-                            }
-                        }
+                        importWardrobePng(
+                            context = context,
+                            uri = uri,
+                            destination = destFile,
+                            acceptedDimensions = setOf(64 to 64, 64 to 32)
+                        )
                         currentAcc.skinModelType = if (isSlimModel) SkinModelType.ALEX else SkinModelType.STEVE
                         AccountsManager.saveAccount(currentAcc)
                         AccountsManager.refreshWardrobe()
@@ -171,13 +229,16 @@ fun MinecraftSkinsScreen(
                     val currentAcc = AccountsManager.currentAccountFlow.value
                     if (currentAcc != null) {
                         val capeDir = PathManager.DIR_ACCOUNT_CAPE
-                        if (!capeDir.exists()) capeDir.mkdirs()
-                        val destFile = currentAcc.getCapeFile()
-                        context.contentResolver.openInputStream(uri)?.use { input ->
-                            FileOutputStream(destFile).use { output ->
-                                input.copyTo(output)
-                            }
+                        if (!capeDir.exists() && !capeDir.mkdirs()) {
+                            throw IllegalStateException("Could not create the cape folder.")
                         }
+                        val destFile = currentAcc.getCapeFile()
+                        importWardrobePng(
+                            context = context,
+                            uri = uri,
+                            destination = destFile,
+                            acceptedDimensions = setOf(64 to 32, 22 to 17)
+                        )
                         AccountsManager.refreshWardrobe()
                     }
                     withContext(Dispatchers.Main) {
@@ -297,7 +358,7 @@ fun MinecraftSkinsScreen(
                     } else {
                         "Waving Cape Physics • Drag 360°"
                     },
-                    color = Color(0xFF55FF55),
+                    color = Color(0xFFB56CFF),
                     fontFamily = MinecraftFontFamily,
                     fontSize = 9.5.sp
                 )
@@ -321,7 +382,7 @@ fun MinecraftSkinsScreen(
                     modifier = Modifier
                         .weight(1f)
                         .clip(RoundedCornerShape(3.dp))
-                        .background(if (selectedWardrobeTab == 0) Color(0xFF2A5520) else Color(0xFF222224))
+                        .background(if (selectedWardrobeTab == 0) Color(0xFF352044) else Color(0xFF222224))
                         .border(
                             BorderStroke(
                                 1.5.dp,
@@ -394,7 +455,7 @@ fun MinecraftSkinsScreen(
                         modifier = Modifier
                             .weight(1f)
                             .clip(RoundedCornerShape(3.dp))
-                            .background(if (!isSlimModel) Color(0xFF3C8527) else Color(0xFF222224))
+                            .background(if (!isSlimModel) Color(0xFF6F35A5) else Color(0xFF222224))
                             .border(
                                 BorderStroke(
                                     1.5.dp,
@@ -491,7 +552,7 @@ fun MinecraftSkinsScreen(
                                 .width(84.dp)
                                 .clip(RoundedCornerShape(3.dp))
                                 .background(
-                                    if (isSelected) Color(0xFF2A3A2A)
+                                    if (isSelected) Color(0xFF352044)
                                     else Color(0xFF1E1E20)
                                 )
                                 .border(
