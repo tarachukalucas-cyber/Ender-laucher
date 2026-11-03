@@ -117,12 +117,12 @@ fun MinecraftButton(
                 )
             } else {
                 Tuple6(
-                    Color(0xFF3B2054), // Dark authentic Minecraft green border
+                    Color(0xFF3B2054), // Dark Ender purple border
                     Color(0xFFE0B5FF), // Top bright highlight line
                     Color(0xFF4B2868), // Bottom 3D bevel shadow
-                    listOf(Color(0xFF9B59FF), Color(0xFF6F35A5)), // Vivid Minecraft green
+                    listOf(Color(0xFF9B59FF), Color(0xFF6F35A5)), // Ender violet
                     Color.White,
-                    Color(0xFF1B0D28) // Dark green text shadow
+                    Color(0xFF1B0D28) // Dark violet text shadow
                 )
             }
         }
@@ -482,33 +482,33 @@ private fun MinecraftPCNavItem(
 
     // Selected = Sleek Minecraft Green Accent Tab with dark background so icons stay natural
     val outerBorder = if (isSelected) {
-        if (isPressed) Color(0xFF1B5E20) else Color(0xFF22C55E)
+        if (isPressed) Color(0xFF4B2868) else Color(0xFFB56CFF)
     } else {
         if (isPressed) Color(0xFF18181B) else Color(0xFF24242A)
     }
 
     val topHighlight = if (isSelected) {
-        if (isPressed) Color(0xFF2E7D32) else Color(0xFF4CAF50)
+        if (isPressed) Color(0xFF6F35A5) else Color(0xFF9B59FF)
     } else {
         if (isPressed) Color(0xFF1E1E22) else Color(0xFF383842)
     }
 
     val bottomShadow = if (isSelected) {
-        if (isPressed) Color(0xFF1B5E20) else Color(0xFF143015)
+        if (isPressed) Color(0xFF4B2868) else Color(0xFF29163C)
     } else {
         if (isPressed) Color(0xFF383842) else Color(0xFF121215)
     }
 
     val bgGradient = if (isSelected) {
-        if (isPressed) listOf(Color(0xFF1C241D), Color(0xFF161C17))
-        else listOf(Color(0xFF222B23), Color(0xFF1A221B))
+        if (isPressed) listOf(Color(0xFF241431), Color(0xFF1B1026))
+        else listOf(Color(0xFF30203D), Color(0xFF241431))
     } else {
         if (isPressed) listOf(Color(0xFF222226), Color(0xFF1B1B1F))
         else listOf(Color(0xFF2C2C34), Color(0xFF222228))
     }
 
-    val textColor = if (isSelected) Color(0xFF55FF55) else Color(0xFFCCCCCC)
-    val textShadow = if (isSelected) Color(0xFF0F2B0A) else Color(0xFF101012)
+    val textColor = if (isSelected) Color(0xFFE0B5FF) else Color(0xFFCCCCCC)
+    val textShadow = if (isSelected) Color(0xFF1B0D28) else Color(0xFF101012)
 
     Column(
         modifier = modifier
@@ -599,7 +599,7 @@ private data class Tuple6<A, B, C, D, E, F>(
 fun MinecraftLinearProgressBar(
     modifier: Modifier = Modifier,
     progress: Float? = null,
-    color: Color = Color(0xFF55FF55),
+    color: Color = Color(0xFFE0B5FF),
     trackColor: Color = Color(0xFF141416),
     borderColor: Color = Color(0xFF383838),
     height: Dp = 8.dp
