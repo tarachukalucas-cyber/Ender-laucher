@@ -94,35 +94,35 @@ fun MinecraftButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val actuallyPressed = isPressed && enabled && !isLoading
 
-    // Colors matching official Minecraft UI button textures
+    // Ender Launcher violet button palette
     val (outerBorder, highlightBar, shadowBar, gradientBody, textColor, textShadow) = when (style) {
         MinecraftButtonStyle.GREEN -> {
             if (!enabled) {
                 Tuple6(
-                    Color(0xFF4A4A4A),
-                    Color(0xFF26522B),
-                    Color(0xFF142B17),
-                    listOf(Color(0xFF1E3F23), Color(0xFF17311B)),
-                    Color(0xFF6B876F),
-                    Color(0xFF0E1A10)
+                    Color(0xFF4A365C),
+                    Color(0xFF6F35A5),
+                    Color(0xFF241431),
+                    listOf(Color(0xFF3B2054), Color(0xFF29163C)),
+                    Color(0xFF9B82AA),
+                    Color(0xFF160D20)
                 )
             } else if (actuallyPressed) {
                 Tuple6(
                     Color(0xFFCCCCCC),
-                    Color(0xFF103F1B), // Inverted shadow on top
-                    Color(0xFF42A62C), // Inverted highlight on bottom
-                    listOf(Color(0xFF205F1C), Color(0xFF184E15)),
+                    Color(0xFF4A2468), // Inverted shadow on top
+                    Color(0xFFB56CFF), // Inverted highlight on bottom
+                    listOf(Color(0xFF6F35A5), Color(0xFF4B2868)),
                     Color(0xFFDCDCDC),
-                    Color(0xFF081F0E)
+                    Color(0xFF1D1028)
                 )
             } else {
                 Tuple6(
-                    Color(0xFF1B3D14), // Dark authentic Minecraft green border
-                    Color(0xFF7AE842), // Top bright highlight line
-                    Color(0xFF1E520F), // Bottom 3D bevel shadow
-                    listOf(Color(0xFF58B62F), Color(0xFF3E8E22)), // Vivid Minecraft green
+                    Color(0xFF3B2054), // Dark authentic Minecraft green border
+                    Color(0xFFE0B5FF), // Top bright highlight line
+                    Color(0xFF4B2868), // Bottom 3D bevel shadow
+                    listOf(Color(0xFF9B59FF), Color(0xFF6F35A5)), // Vivid Minecraft green
                     Color.White,
-                    Color(0xFF0F2B09) // Dark green text shadow
+                    Color(0xFF1B0D28) // Dark green text shadow
                 )
             }
         }
