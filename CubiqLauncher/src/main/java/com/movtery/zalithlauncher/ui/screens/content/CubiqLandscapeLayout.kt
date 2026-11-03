@@ -275,69 +275,120 @@ private fun EnderPortalHome(
     onSelectVersion: (Version) -> Unit,
     onPlayVersion: (Version) -> Unit
 ) {
-    var showVersions by remember { mutableStateOf(false) }
-    Row(modifier = Modifier.fillMaxSize().padding(18.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-        Box(modifier = Modifier.weight(1.15f).fillMaxHeight().clip(RoundedCornerShape(18.dp))) {
-            EnderDimensionBackdrop()
-            Column(
-                modifier = Modifier.align(Alignment.BottomStart).padding(26.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+    Row(
+        modifier = Modifier.fillMaxSize().padding(22.dp),
+        horizontalArrangement = Arrangement.spacedBy(18.dp)
+    ) {
+        // Minimal account panel: no promotional hero, news, or extra dashboard tiles.
+        Column(
+            modifier = Modifier.weight(0.34f).fillMaxHeight()
+                .clip(RoundedCornerShape(18.dp))
+                .background(Color(0xFF171020))
+                .border(BorderStroke(1.dp, Color(0xFF49305D)), RoundedCornerShape(18.dp))
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("SUA CONTA", color = Color(0xFFCDA7EC), fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
+            Box(
+                modifier = Modifier.size(76.dp).clip(RoundedCornerShape(16.dp))
+                    .background(Color(0xFF2A1B36))
+                    .border(BorderStroke(2.dp, Color(0xFF9A5BC7)), RoundedCornerShape(16.dp)),
+                contentAlignment = Alignment.Center
             ) {
-                Text("BEM-VINDO AO FIM", color = Color(0xFFE3C6FF), fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 3.sp)
-                Text("SUA PRÓXIMA\nAVENTURA COMEÇA AQUI", color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Black, lineHeight = 30.sp)
-                Text("Minecraft Java Edition • Ender Launcher", color = Color(0xFFC1B0D1), fontSize = 11.sp)
+                val skinFile = account?.getSkinFile()
+                if (account != null && skinFile != null && skinFile.exists()) {
+                    PlayerFace(account = account, avatarSize = 70.dp)
+                } else {
+                    Image(
+                        painter = painterResource(R.drawable.ic_mc_pc_profile),
+                        contentDescription = "Avatar",
+                        modifier = Modifier.size(66.dp)
+                    )
+                }
             }
-            Box(modifier = Modifier.align(Alignment.TopEnd).padding(16.dp).clip(RoundedCornerShape(20.dp)).background(Color(0xAA160D22)).padding(horizontal = 12.dp, vertical = 7.dp)) {
-                Text("DIMENSÃO ENDER", color = Color(0xFFE1B9FF), fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
-            }
+            Text(
+                account?.username ?: "Nenhuma conta",
+                color = Color.White,
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                account?.let { getAccountTypeName(it) } ?: "Adicione ou selecione uma conta no Perfil",
+                color = Color(0xFFAA98B8),
+                fontSize = 10.sp
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                if (currentVersion != null) "Selecionada: ${currentVersion.getVersionName()}" else "Nenhuma versão selecionada",
+                color = Color(0xFFD7C5E5),
+                fontSize = 11.sp,
+                fontWeight = FontWeight.SemiBold
+            )
         }
-        Column(modifier = Modifier.weight(0.85f).fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Column(
-                modifier = Modifier.fillMaxWidth().weight(1f).clip(RoundedCornerShape(16.dp))
-                    .background(Color(0xFF171020)).border(BorderStroke(1.dp, Color(0xFF392747)), RoundedCornerShape(16.dp))
-                    .padding(18.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                Text("CENTRAL DE JOGO", color = Color(0xFFD8B5F5), fontSize = 10.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
-                Text(currentVersion?.getVersionName() ?: "Nenhuma versão selecionada", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                Text(if (account == null) "Entre com uma conta ou use o perfil offline." else "Jogador: ${account.username}", color = Color(0xFFAA9AB8), fontSize = 11.sp)
-                Spacer(modifier = Modifier.weight(1f))
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier.weight(1f).clip(RoundedCornerShape(10.dp)).background(Color(0xFF2B1D38))
-                            .clickable { showVersions = true }.padding(12.dp)
-                    ) {
-                        Text("ESCOLHER VERSÃO  ▾", color = Color(0xFFDCC1F4), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                    }
-                    Box(
-                        modifier = Modifier.weight(1f).clip(RoundedCornerShape(10.dp)).background(Color(0xFF7D3DB0))
-                            .clickable(onClick = onManageInstallations).padding(12.dp)
-                    ) {
-                        Text("INSTALAÇÕES", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                    }
+
+        // Installed versions are the only main content beside the account card.
+        Column(
+            modifier = Modifier.weight(0.66f).fillMaxHeight()
+                .clip(RoundedCornerShape(18.dp))
+                .background(Color(0xFF120D19))
+                .border(BorderStroke(1.dp, Color(0xFF49305D)), RoundedCornerShape(18.dp))
+                .padding(18.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("SUAS VERSÕES", color = Color(0xFFE2C8F6), fontSize = 15.sp, fontWeight = FontWeight.Black, letterSpacing = 1.4.sp)
+                    Text("${allVersions.size} instalação(ões) disponíveis", color = Color(0xFF9E8BAE), fontSize = 10.sp)
                 }
                 Box(
-                    modifier = Modifier.fillMaxWidth().height(54.dp).clip(RoundedCornerShape(12.dp))
-                        .background(Brush.horizontalGradient(listOf(Color(0xFF9D55D4), Color(0xFF542477))))
-                        .clickable(onClick = onPlay).padding(12.dp),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier.clip(RoundedCornerShape(9.dp))
+                        .background(Color(0xFF713A98))
+                        .clickable(onClick = onManageInstallations)
+                        .padding(horizontal = 14.dp, vertical = 9.dp)
                 ) {
-                    Text(if (isRefreshingVersions) "CARREGANDO..." else "▶  INICIAR MINECRAFT", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Black, letterSpacing = 1.sp)
-                }
-                DropdownMenu(expanded = showVersions, onDismissRequest = { showVersions = false }) {
-                    allVersions.forEach { version ->
-                        DropdownMenuItem(
-                            text = { Text(version.getVersionName()) },
-                            onClick = { onSelectVersion(version); showVersions = false }
-                        )
-                    }
-                    DropdownMenuItem(text = { Text("Gerenciar instalações") }, onClick = { showVersions = false; onManageInstallations() })
+                    Text("+ ADICIONAR", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                 }
             }
-            Row(modifier = Modifier.fillMaxWidth().height(104.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                EnderInfoTile("PERFIL", account?.username ?: "Offline", Modifier.weight(1f))
-                EnderInfoTile("VERSÕES", "${allVersions.size} instaladas", Modifier.weight(1f))
-                EnderInfoTile("AMBIENTE", "Java Edition", Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(14.dp))
+            if (allVersions.isEmpty()) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("Nenhuma versão instalada. Use + ADICIONAR para começar.", color = Color(0xFFAA98B8), fontSize = 12.sp)
+                }
+            } else {
+                Column(
+                    modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    allVersions.forEach { version ->
+                        val isSelected = currentVersion?.getVersionName() == version.getVersionName()
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(if (isSelected) Color(0xFF2A1B38) else Color(0xFF1B1423))
+                                .border(BorderStroke(1.dp, if (isSelected) Color(0xFFB56CFF) else Color(0xFF382746)), RoundedCornerShape(12.dp))
+                                .clickable { onSelectVersion(version) }
+                                .padding(horizontal = 12.dp, vertical = 10.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            CommonVersionInfoLayout(
+                                modifier = Modifier.weight(1f),
+                                version = version,
+                                iconSize = 34.dp
+                            )
+                            Box(
+                                modifier = Modifier.clip(RoundedCornerShape(8.dp))
+                                    .background(Brush.horizontalGradient(listOf(Color(0xFF9852C5), Color(0xFF62318A))))
+                                    .clickable { onSelectVersion(version); onPlayVersion(version) }
+                                    .padding(horizontal = 14.dp, vertical = 10.dp)
+                            ) {
+                                Text("JOGAR", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
